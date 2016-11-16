@@ -1,0 +1,34 @@
+<?php
+return array(
+	'DB_TYPE'   => 'mysql', // 数据库类型
+	'DB_HOST'   => '127.0.0.1',
+	'DB_NAME'   => 'xrs',
+	'DB_USER'   => 'root',
+	'DB_PWD'    => 'root',
+	'DB_PORT'   => '3306',
+	'DB_PREFIX' => 'gxr_',
+	'URL_CASE_INSENSITIVE' => false,
+
+	'TMPL_PARSE_STRING' => array (
+		'__ASSETS__' => __ROOT__.'/assets',
+	),
+
+	'DEFAULT_GROUP'         => '',  // 默认分组
+	'DEFAULT_MODULE'        => 'Home', // 默认模块名称
+	'DEFAULT_ACTION'        => 'index', // 默认操作名称
+	'DEFAULT_THEME'         => 'default',	// 默认模板主题名称
+	'BASIC_THEME'   		=> '',
+	'URL_HTML_SUFFIX' 		=> '',  // URL伪静态后缀设置
+	'URL_MODEL' 			=> 2,
+	'URL_HTML_SUFFIX' 		=> '',
+	'URL_PATHINFO_DEPR' 	=> '/',
+	'VAR_URL_PARAMS' 		=> '',
+	'URL_ROUTER_ON'   		=> true, //开启路由
+	'MODULE_ALLOW_LIST' => array (
+                'Home',
+                'Admin',
+                'Api'
+        ),
+
+
+);
