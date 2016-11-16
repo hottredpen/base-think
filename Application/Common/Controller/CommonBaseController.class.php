@@ -9,7 +9,7 @@ class CommonBaseController extends Controller {
 
     protected function _initialize() {
         if($setting = F("WEB_SETTING")===false){
-            $setting = D("Setting","Datamanager")->getDataWithPre();
+            $setting = D("Setting","Datamanager")->getDataWithPre_NoCache();
             F("WEB_SETTING",$setting);
         }
         C($setting);

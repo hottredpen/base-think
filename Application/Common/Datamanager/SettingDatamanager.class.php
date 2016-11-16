@@ -8,7 +8,7 @@ class SettingDatamanager {
 	/**
 	 * 带前缀的配置
 	 */
-	public function getDataWithPre(){
+	public function getDataWithPre_NoCache(){
         $data = M("Setting")->select();
         foreach ($data as $key=>$val) {
             $setting['fdz_'.$val['name']] = substr($val['data'], 0, 2) == 'a:' ? unserialize($val['data']) : $val['data'];
