@@ -14,7 +14,16 @@ class IndexController extends BackController {
     }
 
     public function login(){
-    	$this->display();
+    	if(IS_POST){
+    		$res = D("Admin","HandleObject")->login();
+    		if($res['error']==0 && $res['id'] >0){
+    			$this->success($res['info'], U('index/index'));
+    		}else{
+    			$this->error($res['info'], U('index/login'));
+    		}
+    	}else{
+    		$this->display();
+    	}
     }
 
 }
