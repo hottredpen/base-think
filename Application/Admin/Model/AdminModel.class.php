@@ -25,7 +25,7 @@ class AdminModel extends Model{
         array('loginusername', 'is_fiter_input_sql_pass', '用户名或密码错误', self::MUST_VALIDATE,'function',self::ADMIN_LOGIN),
         array('loginpassword', 'is_passwordnotempty_pass', '登录密码必填', self::MUST_VALIDATE,'callback',self::ADMIN_LOGIN),
         array('loginpassword', 'is_loginpassword_pass', '用户名或密码错误', self::MUST_VALIDATE,'callback',self::ADMIN_LOGIN),
-        //array('captcha', 'checkVerify', '验证码错误', self::MUST_VALIDATE, 'function',self::ADMIN_LOGIN),
+        array('verify_code', 'check_verify', '验证码错误', self::MUST_VALIDATE, 'function',self::ADMIN_LOGIN),
     );
 
     protected function set_password(){
@@ -60,12 +60,11 @@ class AdminModel extends Model{
     }
 
     protected function is_loginpassword_pass($password){
-        $has = $this->where(array("username"=>$this->loginUser,"password"=>$this->_md5_password($password)))->field("id")->find();
+        $has = $this->where(array("username"=>$this->loginUser,"password"=>$this->_md5_password($password)))->find();
         if($has){
-            $this->loginUserData = array("uid"=>$has['id']);
+            $this->loginUserData = $has;
             return true;
         }
-        $this->loginUserData = array("uid"=>0);
         return false;
     }
 

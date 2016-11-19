@@ -21,12 +21,12 @@ class BackController extends CommonBaseController {
         if ( (!isset($admin_session) || !$admin_session) && !in_array(ACTION_NAME, array('login','verify_code')) ) {
             $this->redirect('index/login');
         }
-        if($admin_session['role_id'] == 1) {
-            return true;
-        }
-        if (in_array(strtolower(CONTROLLER_NAME), explode(',', 'index'))) {
-            return true;
-        }
+        // if($admin_session['role_id'] == 1) {
+        //     return true;
+        // }
+        // if (in_array(strtolower(CONTROLLER_NAME), explode(',', 'index'))) {
+        //     return true;
+        // }
 		// $menuIdResult = M('Menu')->field("id")->where(array('module_name'=>CONTROLLER_NAME, 'action_name'=>ACTION_NAME))->select();
   //       foreach($menuIdResult as $key=>$value){
   //           $str .= $value["id"].",";

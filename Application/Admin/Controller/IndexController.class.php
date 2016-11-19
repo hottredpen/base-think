@@ -10,7 +10,7 @@ class IndexController extends BackController {
     }
 
     public function index(){
-    	dump(C());
+    	$this->display();
     }
 
     public function login(){
@@ -24,6 +24,12 @@ class IndexController extends BackController {
     	}else{
     		$this->display();
     	}
+    }
+    public function verify_code() {
+        $Verify = new \Think\Verify();
+        $Verify->fontSize = 30;
+        $Verify->length   = 4;
+        $Verify->entry();
     }
 
 }

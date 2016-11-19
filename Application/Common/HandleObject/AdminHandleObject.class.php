@@ -22,15 +22,23 @@ class AdminHandleObject {
      */
     public function login(){
         $adminModel = D('Admin');
-        if (!$adminModel->field('loginusername,loginpassword,captcha')->create($_POST,10)){
+        if (!$adminModel->field('loginusername,loginpassword,verify_code')->create($_POST,10)){
             return array("error"=>1,"info"=>$adminModel->getError());
         }else{
             $loginUserData = $adminModel->getLoginUserData();
-            if($loginUserData['uid'] > 0){
-                $res = $adminModel->where(array('id'=>$loginUserData['uid']))->save();
+            if($loginUserData['id'] > 0){
+                $res = $adminModel->where(array('id'=>$loginUserData['id']))->save();
                 if($res){
+
+                    session('admin', array(
+                        'id'        => $loginUserData['id'],
+                        'role_id'   => $loginUserData['role_id'],
+                        'role_name' => M('AdminRole')->where(array('id'=>$loginUserData['role_id']))->getField("name"),
+                        'username'  => $loginUserData['username'],
+                    ));
+                    //\Common\Lib\ORG\LogRecord::recordLogAdmin(CONTROLLER_NAME, ACTION_NAME ,600,0, "**保密处理**");
                     //session('captcha'.md5(getIPAderss(),null));
-                    return array("error"=>0,"info"=>"登陆成功","uid"=>$loginUserData['uid']);
+                    return array("error"=>0,"info"=>"登陆成功","id"=>$loginUserData['id']);
                 }
             }else{
                 return array("error"=>1,"info"=>"用户名或密码错误");
