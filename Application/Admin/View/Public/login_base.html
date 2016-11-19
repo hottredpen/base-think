@@ -4,30 +4,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title><block name="web_title">管理后台登录</block></title>
 <link href="__ASSETS__/admin/css/vip.css" rel="stylesheet" type="text/css" />
-<link href="__ASSETS__/admin/css/skin_01.css" rel="stylesheet" type="text/css" id="skin">
+<link href="__ASSETS__/admin/css/skin_01.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <block name="main">
 
 </block>
 <script type="text/javascript" src="__ASSETS__/admin/js/jquery.min.js"></script>
-<script type="text/javascript" src="__ASSETS__/admin/js/jquery.lqper.js"></script>
-<script>
-$(function(){
-    if(self != top){
-        top.location = self.location;
-    }
-    
-    $(".verify_img").click(function(){
-        var timenow = new Date().getTime();
-        $(this).attr("src","{:U('admin/index/verify_code', array("t"=>"+timenow+"))}");
-    });
-});
-</script>
 <block name="footerjs">
 
 </block>
-
 </body>
 </html>
 

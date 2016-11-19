@@ -1,4 +1,4 @@
-<extend name="Public:base" />
+<extend name="Public:login_base" />
 
 <block name="main">
 
@@ -13,7 +13,7 @@
                         <ul class="ul">
                             <li><label>账号：</label><input type="text"      name="loginusername"   class="txt1 txt" placeholder="请输入登录账号"></li>
                             <li><label>密码：</label><input type="password"  name="loginpassword" id="password" class="txt1 txt" /></li>
-                            <li><label>验证码：</label><input name="verify_code" id="verify_code" type="text" class="txt1 txt" style=" width:130px;"/><img title="输入验证码" class="verify_img" src="{:U('Admin/index/verify_code', array('t'=>time()))}" width="100" height="42px" align="absmiddle"/></li>
+                            <li><label>验证码：</label><input name="verify_code" id="verify_code" type="text" class="txt1 txt" style=" width:130px;"/><img title="输入验证码" class="J_verify_img" src="{:U('Admin/index/verify_code', array('t'=>time()))}" width="100" height="42px" align="absmiddle"/></li>
                           
                         </ul>
                         <div class="reg"><input type="submit" name="Submit" value="立即登录" class="btn2"><a href="/" class="btn3">返回首页</a></div>
@@ -32,7 +32,7 @@
 
 <block name="footerjs">
 <script>
-    $(document).on("click",".verify_img",function(){
+    $(document).on("click",".J_verify_img",function(){
         var timenow = new Date().getTime();
         $(this).attr("src",'/admin/index/verify_code/t/'+timenow);
     });
