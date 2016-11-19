@@ -10,12 +10,17 @@ class IndexController extends BackController {
     }
 
     public function index(){
-    	$this->display();
+
+        //$menuModel = new MenuModel();
+        //$top_menus = $menuModel->admin_menu(0);
+        $this->assign('top_menus', $top_menus);
+        $this->assign('my_admin', session('admin'));
+        $this->display();
     }
 
     public function login(){
     	if(IS_POST){
-    		$res = D("Admin","HandleObject")->login();
+    		$res = D("AdminBase","HandleObject")->login();
     		if($res['error']==0 && $res['id'] >0){
     			$this->success($res['info'], U('index/index'));
     		}else{

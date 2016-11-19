@@ -4,7 +4,7 @@ namespace Common\HandleObject;
  * AdminHandleObject
  * 管理员操作对象
  */
-class AdminHandleObject {
+class AdminBaseHandleObject {
 	private $uid;
 
     public function __construct($uid) {
@@ -33,7 +33,7 @@ class AdminHandleObject {
                     session('admin', array(
                         'id'        => $loginUserData['id'],
                         'role_id'   => $loginUserData['role_id'],
-                        'role_name' => M('AdminRole')->where(array('id'=>$loginUserData['role_id']))->getField("name"),
+                        'rolename' => M('AdminRole')->where(array('id'=>$loginUserData['role_id']))->getField("name"),
                         'username'  => $loginUserData['username'],
                     ));
                     //\Common\Lib\ORG\LogRecord::recordLogAdmin(CONTROLLER_NAME, ACTION_NAME ,600,0, "**保密处理**");
