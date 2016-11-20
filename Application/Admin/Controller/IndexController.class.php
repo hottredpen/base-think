@@ -30,6 +30,11 @@ class IndexController extends BackController {
     		$this->display();
     	}
     }
+
+    public function logout(){
+        $res = D("AdminBase","HandleObject")->logout();
+        $this->success($res['info'], U('index/login'));
+    }
     public function verify_code() {
         $Verify = new \Think\Verify();
         $Verify->fontSize = 30;

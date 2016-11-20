@@ -45,4 +45,12 @@ class AdminBaseHandleObject {
             }
         }
     }
+    /**
+     * 
+     */
+    public function logout(){
+        //\Common\Lib\ORG\LogRecord::recordLogAdmin(CONTROLLER_NAME, ACTION_NAME ,601,0, "**保密处理**");
+        session('admin', null);
+        return array("error"=>0,"info"=>"登出成功");
+    }
 }
