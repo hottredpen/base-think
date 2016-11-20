@@ -10,12 +10,14 @@ class IndexController extends BackController {
     }
 
     public function index(){
-
-        //$menuModel = new MenuModel();
-        //$top_menus = $menuModel->admin_menu(0);
+        $top_menus = D("Menu","Datamanager")->getMainAdminMenu();
         $this->assign('top_menus', $top_menus);
         $this->assign('my_admin', session('admin'));
         $this->display();
+    }
+
+    public function panel(){
+
     }
 
     public function login(){
@@ -35,6 +37,18 @@ class IndexController extends BackController {
         $res = D("AdminBase","HandleObject")->logout();
         $this->success($res['info'], U('index/login'));
     }
+
+    public function left() {
+        $menuid = I('menuid', 0, 'intval');
+        if ($menuid > 0) {
+            $left_menu = D("Menu","Datamanager")->getLeftAdminMenu_pid($menuid);
+        } else {
+            $left_menu = D("Menu","Datamanager")->getLeftOftenAdminMenu();
+        }
+        $this->assign('left_menu', $left_menu);
+        $this->display();
+    }
+
     public function verify_code() {
         $Verify = new \Think\Verify();
         $Verify->fontSize = 30;
