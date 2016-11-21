@@ -2,29 +2,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <html class="off">
 <head>
-    <meta charset="utf-8" />
-    <css file="__ASSETS__/admin/css/style.css" />
-    <title>{:L('website_manage')}</title>
-    <script>
-	var URL = '__URL__';
-	var SELF = '__SELF__';
-	var ROOT_PATH = '__ROOT__';
-	var APP	 =	 '__APP__';
-	//语言项目
-	var lang = new Object();
-	<volist name=":L('js_lang')" id="val">
-		lang.{$key} = "{$val}";
-	</volist>
-	</script>
+<meta charset="utf-8" />
+<css file="__ASSETS__/admin/css/style.css" />
+<title>后台管理</title>
 </head>
 <body scroll="no">
 <div id="header">
-	<div class="logo"><a href="__APP__" title="{:L('website_manage')}"></a></div>
+	<div class="logo"><a href="/" title="{:L('website_manage')}"></a></div>
     <div class="fl">
     	<div class="cut_line admin_info tr">
 		您好！<b>{$my_admin.username}</b> [{$my_admin.rolename}]
-        	&nbsp;&nbsp;&nbsp;<a href="{:u('index/logout')}">[{:L('logout')}]</a>
-			&nbsp;<a href="{:C('hzgxr_site_url')}" target="_blank">[{:L('site_home')}]</a>
+        	<a href="{:u('index/logout')}">[退出]</a>
+			<a href="/" target="_blank">网站前台</a>
         </div>
     </div>
     <ul class="nav white" id="J_tmenu">
@@ -34,9 +23,9 @@
 		      <li class="top_menu"><a href="javascript:;" data-id="{$val.id}" hidefocus="true" style="outline:none;">{:L($val['name'])}</a></li>
             </if>
         </volist>
-		 
     </ul>
 </div>
+
 <div id="content">
 	<div class="left_menu fl">
     	<div id="J_lmenu" class="J_lmenu" data-uri="{:U('index/left')}"></div>
@@ -45,9 +34,9 @@
     <div class="right_main">
     	<div class="crumbs">
         	<div class="options">
-				<a href="javascript:;" title="{:L('refresh_page')}" id="J_refresh" class="refresh" hidefocus="true">{:L('refresh_page')}</a>
-            	<a href="javascript:;" title="{:L('full_screen')}" id="J_full_screen" class="admin_full" hidefocus="true">{:L('full_screen')}</a>
-                <a href="javascript:;" title="{:L('flush_cache')}" id="J_flush_cache" class="flush_cache" data-uri="{:U('cache/qclear')}" hidefocus="true">{:L('flush_cache')}</a>
+				<a href="javascript:;" title="刷新页面" id="J_refresh" class="refresh" hidefocus="true">刷新页面</a>
+            	<a href="javascript:;" title="全屏" id="J_full_screen" class="admin_full" hidefocus="true">全屏</a>
+                <a href="javascript:;" title="刷新缓存" id="J_flush_cache" class="flush_cache" data-uri="{:U('cache/qclear')}" hidefocus="true">刷新缓存</a>
             	<a href="javascript:;" title="{:L('background_map')}" id="J_admin_map" class="admin_map" data-uri="{:U('index/map')}" hidefocus="true">{:L('background_map')}</a>
 			</div>
     		<div id="J_mtab" class="mtab">
@@ -66,15 +55,6 @@
     </div>
 </div>
 <script src="__ASSETS__/admin/js/jquery.min.js"></script>
-<script src="__STATIC__/js/ftxia.js"></script>
-<script>
-//初始化弹窗
-// (function (d) {
-//     d['okValue'] = lang.dialog_ok;
-//     d['cancelValue'] = lang.dialog_cancel;
-//     d['title'] = lang.dialog_title;
-// })($.dialog.defaults);
-</script>
 <script src="__ASSETS__/admin/js/index.js"></script>
 </body>
 </html>

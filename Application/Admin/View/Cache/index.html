@@ -1,0 +1,191 @@
+<extend name="Public:admin_base" />
+
+<block name="body_main">
+	<!--清理缓存-->
+	<div class="subnav">
+		<h1 class="title_2 line_x">清空缓存</h1>
+	</div>
+	<div class="common-form pad_lr_10">
+		<form id="info_form" action="{:u('cache/clear')}" method="post">
+			<table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+				<tr>
+					<th width="30"></th>
+					<td width="120"><label><input type="checkbox" checked value="field" name="type" class="mr5" data-uri="{:U('cache/clear', array('type'=>'field'))}"> {:L('field_cache')}</label></td>
+					<td><span class="gray mr10">{:L('field_cache_desc')}</span><span id="field_ifm"></span></td>
+				</tr>
+				<tr>
+					<th></th>
+					<td><label><input type="checkbox" checked value="tpl" name="type" class="mr5" data-uri="{:U('cache/clear', array('type'=>'tpl'))}"> {:L('tpl_cache')}</label></td>
+					<td><span class="gray mr10">{:L('tpl_cache_desc')}</span><span id="tpl_ifm"></span></td>
+				</tr>
+				<tr>
+					<th></th>
+					<td><label><input type="checkbox" checked value="data" name="type" class="mr5" data-uri="{:U('cache/clear', array('type'=>'data'))}"> {:L('data_cache')}</label></td>
+					<td><span class="gray mr10">{:L('data_cache_desc')}</span><span id="data_ifm"></span></td>
+				</tr>
+				<tr>
+					<th></th>
+					<td><label><input type="checkbox" checked value="runtime" name="type" class="mr5" data-uri="{:U('cache/clear', array('type'=>'runtime'))}"> {:L('runtime_cache')}</label></td>
+					<td><span class="gray mr10">{:L('runtime_cache_desc')}</span><span id="runtime_ifm"></span></td>
+				</tr>
+				<tr>
+					<th></th>
+					<td><label><input type="checkbox" checked value="logs" name="type" class="mr5" data-uri="{:U('cache/clear', array('type'=>'logs'))}"> {:L('logs_cache')}</label></td>
+					<td><span class="gray mr10">{:L('logs_cache_desc')}</span><span id="logs_ifm"></span></td>
+				</tr>
+				<tr>
+					<th></th>
+					<td><label><input type="checkbox" checked value="js" name="type" class="mr5" data-uri="{:U('cache/clear', array('type'=>'js'))}"> {:L('modfiy_js_msg')}</label></td>
+					<td><span class="gray mr10">{:L('modfiy_js_cahe')}</span><span id="js_ifm"></span></td>
+				</tr>
+
+				<tr>
+					<th></th>
+					<td><label><input type="checkbox" checked value="api" name="type" class="mr5" data-uri="{:U('cache/clear', array('type'=>'api'))}"> {:L('other_cahe_msg')}</label></td>
+					<td><span class="gray mr10">{:L('other_cahe_file')}</span><span id="api_ifm"></span></td>
+				</tr>
+
+				<tr>
+					<th></th>
+					<td><label><input type="checkbox"  value="bussiness" name="type" class="mr5" data-uri="{:U('cache/clear', array('type'=>'bussiness'))}"> 人才大厅</label></td>
+					<td><span class="gray mr10">人才大厅的静态文件</span><span id="bussiness_ifm"></span></td>
+				</tr>
+
+
+				<tr>
+					<th></th>
+					<td><label><input type="checkbox"  value="service" name="type" class="mr5" data-uri="{:U('cache/clear', array('type'=>'service'))}"> 服务大厅</label></td>
+					<td><span class="gray mr10">服务大厅的静态文件</span><span id="service_ifm"></span></td>
+				</tr>
+
+
+				<tr>
+					<th></th>
+					<td><label><input type="checkbox"  value="shop" name="type" class="mr5" data-uri="{:U('cache/clear', array('type'=>'shop'))}"> 所有店铺</label></td>
+					<td><span class="gray mr10">所有店铺的静态文件</span><span id="shop_ifm"></span></td>
+				</tr>
+
+
+				<tr>
+					<th></th>
+					<td><input type="button" id="J_clear_cache" class="smt mr10" value="{:L('clear')}"/></td>
+					<td></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+
+</block>
+
+<block name="footerjs">
+<script>
+$(function(){
+	$(document).on("click","#J_clear_cache",function(){
+
+		console.log("asdasdf");
+        $('input[name="type"]:checked').each(function(){
+            var type = $(this).val();
+                uri = $(this).attr('data-uri');
+            $('#'+type+'_ifm').html("等待");
+            $.getJSON(uri, {type:type}, function(result){
+                $('#'+type+'_ifm').addClass('onCorrect').html("清理完成");
+            });
+        });
+	});
+});
+</script>
+</block>
+
+
+<include file="Public:header" />
+<!--清理缓存-->
+<div class="subnav">
+    <h1 class="title_2 line_x">清空缓存</h1>
+</div>
+<div class="common-form pad_lr_10">
+	<form id="info_form" action="{:u('cache/clear')}" method="post">
+		<table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+			<tr>
+				<th width="30"></th>
+				<td width="120"><label><input type="checkbox" checked value="field" name="type" class="mr5" data-uri="{:U('cache/clear', array('type'=>'field'))}"> {:L('field_cache')}</label></td>
+				<td><span class="gray mr10">{:L('field_cache_desc')}</span><span id="field_ifm"></span></td>
+			</tr>
+			<tr>
+				<th></th>
+				<td><label><input type="checkbox" checked value="tpl" name="type" class="mr5" data-uri="{:U('cache/clear', array('type'=>'tpl'))}"> {:L('tpl_cache')}</label></td>
+				<td><span class="gray mr10">{:L('tpl_cache_desc')}</span><span id="tpl_ifm"></span></td>
+			</tr>
+			<tr>
+				<th></th>
+				<td><label><input type="checkbox" checked value="data" name="type" class="mr5" data-uri="{:U('cache/clear', array('type'=>'data'))}"> {:L('data_cache')}</label></td>
+				<td><span class="gray mr10">{:L('data_cache_desc')}</span><span id="data_ifm"></span></td>
+			</tr>
+			<tr>
+				<th></th>
+				<td><label><input type="checkbox" checked value="runtime" name="type" class="mr5" data-uri="{:U('cache/clear', array('type'=>'runtime'))}"> {:L('runtime_cache')}</label></td>
+				<td><span class="gray mr10">{:L('runtime_cache_desc')}</span><span id="runtime_ifm"></span></td>
+			</tr>
+			<tr>
+				<th></th>
+				<td><label><input type="checkbox" checked value="logs" name="type" class="mr5" data-uri="{:U('cache/clear', array('type'=>'logs'))}"> {:L('logs_cache')}</label></td>
+				<td><span class="gray mr10">{:L('logs_cache_desc')}</span><span id="logs_ifm"></span></td>
+			</tr>
+			<tr>
+				<th></th>
+				<td><label><input type="checkbox" checked value="js" name="type" class="mr5" data-uri="{:U('cache/clear', array('type'=>'js'))}"> {:L('modfiy_js_msg')}</label></td>
+				<td><span class="gray mr10">{:L('modfiy_js_cahe')}</span><span id="js_ifm"></span></td>
+			</tr>
+
+			<tr>
+				<th></th>
+				<td><label><input type="checkbox" checked value="api" name="type" class="mr5" data-uri="{:U('cache/clear', array('type'=>'api'))}"> {:L('other_cahe_msg')}</label></td>
+				<td><span class="gray mr10">{:L('other_cahe_file')}</span><span id="api_ifm"></span></td>
+			</tr>
+
+			<tr>
+				<th></th>
+				<td><label><input type="checkbox"  value="bussiness" name="type" class="mr5" data-uri="{:U('cache/clear', array('type'=>'bussiness'))}"> 人才大厅</label></td>
+				<td><span class="gray mr10">人才大厅的静态文件</span><span id="bussiness_ifm"></span></td>
+			</tr>
+
+
+			<tr>
+				<th></th>
+				<td><label><input type="checkbox"  value="service" name="type" class="mr5" data-uri="{:U('cache/clear', array('type'=>'service'))}"> 服务大厅</label></td>
+				<td><span class="gray mr10">服务大厅的静态文件</span><span id="service_ifm"></span></td>
+			</tr>
+
+
+			<tr>
+				<th></th>
+				<td><label><input type="checkbox"  value="shop" name="type" class="mr5" data-uri="{:U('cache/clear', array('type'=>'shop'))}"> 所有店铺</label></td>
+				<td><span class="gray mr10">所有店铺的静态文件</span><span id="shop_ifm"></span></td>
+			</tr>
+
+
+            <tr>
+            	<th></th>
+                <td><input type="button" id="J_clear_cache" class="smt mr10" value="{:L('clear')}"/></td>
+                <td></td>
+            </tr>
+		</table>
+	</form>
+</div>
+</div>
+<include file="Public:footer" />
+<script>
+$(function(){
+    $('#J_clear_cache').live('click', function(){
+        $('input[name="type"]:checked').each(function(){
+            var type = $(this).val();
+                uri = $(this).attr('data-uri');
+            $('#'+type+'_ifm').html(lang.clear_wait);
+            $.getJSON(uri, {type:type}, function(result){
+                $('#'+type+'_ifm').addClass('onCorrect').html(lang.clear_success);
+            });
+        });
+    });
+});
+</script>
+</body>
+</html>

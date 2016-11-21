@@ -1,0 +1,32 @@
+<extend name="Public:admin_base" />
+
+<block name="body_main">
+	<div class="pad_10">
+		<div class="clearfix">
+			<div class="col-2 fl mr10">
+				<h6>我的个人信息</h6>
+				<div class="content">
+					您好，<b style="color:#06C"> {$my_admin.username}</b> &nbsp;[{$my_admin.rolename}]<br />
+					登录IP： {$ip} [ {$time}]<br />
+					<div class="bk20 hr"><hr /></div>
+
+					<volist name="message" id="vo">
+						<span class="red">{$vo.content}</span>
+					</volist>
+				</div>
+			</div>
+			<div class="col-2 fl mr10">
+				<h6>系统信息</h6>
+				<div class="content">
+	 				{:L('server_os')}：{$system_info.server_os}<br />
+					{:L('web_server')}：{$system_info.web_server}<br />
+					{:L('php_version')}：{$system_info.php_version}<br />
+					支持函数：<span class="{$system_info.curl}">远程读取</span>
+					<span class="onCorrect">编码转换</span>
+					<span class="{$system_info.zlib}">页面压缩</span>
+					<br />
+				</div>
+			</div>
+		</div>
+	</div>
+</block>
