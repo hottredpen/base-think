@@ -9,6 +9,9 @@ return array(
 	'DB_PREFIX' => 'gxr_',
 	'URL_CASE_INSENSITIVE' => false,
 
+	// 开启语言包功能
+	'LANG_SWITCH_ON' => true,   
+
 	'TMPL_PARSE_STRING' => array (
 		'__ASSETS__' => __ROOT__.'/assets',
 	),

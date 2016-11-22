@@ -17,6 +17,7 @@ class MenuDatamanager {
         	foreach ($menus as $key => $value) {
 				$map['pid']         = $value['id'];
 				$menus[$key]['sub'] = M("Menu")->where($map)->order('ordid')->select();
+				$menus[$key]['sub_d'] = "ddddddddddd===============================================================";
         	}
 	        S("AdminMenu".$pid,$menus);
 		}

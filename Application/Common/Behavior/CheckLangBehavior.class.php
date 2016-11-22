@@ -77,14 +77,6 @@ class CheckLangBehavior {
             
             if (is_file($file))
                 L(include $file);
-
-            $lang = L(include $file);
         //}
-
-        $js_lang = isset($lang['JS_LANG']) ? $lang['JS_LANG'] : array();
-        $module_js_lang = isset($lang['JS_LANG_' .strtoupper(CONTROLLER_NAME)]) ? $lang['JS_LANG_' . strtoupper(CONTROLLER_NAME)] : array();
-        $lang['JS_LANG'] = array_merge($js_lang, $module_js_lang);
-        L($lang);
-
     }
 }
