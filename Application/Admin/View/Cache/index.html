@@ -1,42 +1,53 @@
 <extend name="Public:admin_base" />
 
 <block name="body_main">
-	<!--清理缓存-->
-	<div class="subnav">
-		<h1 class="title_2 line_x">清空缓存</h1>
-	</div>
-	<div class="common-form pad_lr_10">
-		<form id="info_form" action="{:u('cache/clear')}" method="post">
-			<table width="100%" cellpadding="2" cellspacing="1" class="table_form">
-				<tr>
-					<th></th>
-					<td><label><input type="checkbox" checked value="tpl" name="type" class="mr5" data-uri="{:U('cache/clear', array('type'=>'tpl'))}"> {:L('tpl_cache')}</label></td>
-					<td><span class="gray mr10">{:L('tpl_cache_desc')}</span><span id="tpl_actioninfo"></span></td>
-				</tr>
-				<tr>
-					<th></th>
-					<td><label><input type="checkbox" checked value="data" name="type" class="mr5" data-uri="{:U('cache/clear', array('type'=>'data'))}"> {:L('data_cache')}</label></td>
-					<td><span class="gray mr10">{:L('data_cache_desc')}</span><span id="data_actioninfo"></span></td>
-				</tr>
-				<tr>
-					<th></th>
-					<td><label><input type="checkbox" checked value="temp" name="type" class="mr5" data-uri="{:U('cache/clear', array('type'=>'temp'))}"> {:L('temp_cache')}</label></td>
-					<td><span class="gray mr10">{:L('temp_cache_desc')}</span><span id="temp_actioninfo"></span></td>
-				</tr>
-				<tr>
-					<th></th>
-					<td><label><input type="checkbox" checked value="logs" name="type" class="mr5" data-uri="{:U('cache/clear', array('type'=>'logs'))}"> {:L('logs_cache')}</label></td>
-					<td><span class="gray mr10">{:L('logs_cache_desc')}</span><span id="logs_actioninfo"></span></td>
-				</tr>
-				<tr>
-					<th></th>
-					<td><input type="button" id="J_clear_cache" class="smt mr10" value="{:L('clear')}"/></td>
-					<td></td>
-				</tr>
+	<div class="col-md-8">
+		<form action="" method="post">
+			<table class="table">
+				<caption></caption>
+				<thead>
+					<tr>
+						<th width="20">清空缓存</th>
+						<th width="50"></th>
+						<th width="100"></th>
+						<th width="100"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><input type="checkbox" checked value="tpl"  name="type" data-uri="{:U('cache/clear', array('type'=>'tpl'))}"></td>
+						<td>{:L('tpl_cache')}</td>
+						<td>{:L('tpl_cache_desc')}</td>
+						<td><span id="j_tpl_actioninfo"></span></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" checked value="data" name="type" data-uri="{:U('cache/clear', array('type'=>'data'))}"></td>
+						<td>{:L('data_cache')}</td>
+						<td>{:L('data_cache_desc')}</td>
+						<td><span id="j_data_actioninfo"></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" checked value="temp" name="type" data-uri="{:U('cache/clear', array('type'=>'temp'))}"></td>
+						<td>{:L('temp_cache')}</td>
+						<td>{:L('temp_cache_desc')}</td>
+						<td><span id="j_temp_actioninfo"></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" checked value="logs" name="type" data-uri="{:U('cache/clear', array('type'=>'data'))}"></td>
+						<td>{:L('logs_cache')}</td>
+						<td>{:L('logs_cache_desc')}</td>
+						<td><span id="j_logs_actioninfo"></td>
+					</tr>
+					<tr>
+						<th></th>
+						<td><input type="button" class="btn btn-default" id="J_clear_cache" value="{:L('clear')}"/></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</tbody>
 			</table>
 		</form>
 	</div>
-
 </block>
 
 <block name="footerjs">
@@ -46,7 +57,7 @@ $(function(){
         $('input[name="type"]:checked').each(function(){
 			var type   = $(this).val();
 			var uri    = $(this).attr('data-uri');
-			var o_info = $('#'+type+'_actioninfo');
+			var o_info = $('#j_'+type+'_actioninfo');
             o_info.html("等待");
             $.getJSON(uri, '', function(result){
                 o_info.addClass('onCorrect').html("清理完成");
