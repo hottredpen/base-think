@@ -4,6 +4,7 @@
     dir: "../build",
     paths: {
     	jquery        : 'empty:',
+        artdialog     : 'empty:',
         uploadify     : 'empty:',
         chat          : 'empty:',
         kindeditor    : 'empty:',
