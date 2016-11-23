@@ -2,7 +2,8 @@
 /**
  * 常用检测
  * （收录标准是各系统可用）
- * 命名规范已“is_name_pass”的格式命名
+ * @命名规范@is_name_pass的格式命名，name可以是两个单词的小写
+ * @命名规范@is_fname_sname_tname_pass的格式用于两个单词描述不清的情况
  * 其他非此命名的的函数是辅助函数
  */
 function is_notempty_pass($value){
