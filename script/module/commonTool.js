@@ -1,0 +1,10 @@
+define(['jquery',
+	'./unit_tools/dialog',
+	'./unit_tools/lazyload',
+	'./unit_tools/swfobject',
+	'./unit_tools/fancybox',
+	'./unit_tools/cxscroll'
+	],function($){
+	//console.log("commonTool");
+	}
+);
