@@ -11,6 +11,7 @@ class IndexController extends FrontController {
     }
 
     public function index(){
+    	M("Setting")->select();
         echo "string";
     }
 
