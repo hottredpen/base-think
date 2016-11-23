@@ -17,7 +17,7 @@ define(['jquery','dialog'],function($,dialog){
                     title: dtitle,
                     content: result.data
                 });
-                d.show();
+                d.showModal();
 
             }
         });
