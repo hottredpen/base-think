@@ -23,8 +23,17 @@ function filter_list_editorinfo($str){
 
 
 function filter_XSS($str){
-    //@todo
-    return $str;
+    static $obj = null;
+    if ($obj === null) {
+        // 载入核心文件
+        $file = APP_PATH.'Common/Lib/ORG/HTMLPurifier/HTMLPurifier.includes.php';
+        if(is_file($file)){
+            require_once($file);
+            $obj = new \HTMLPurifier();
+        }
+    }
+    // 返回过滤后的数据
+    return $obj->purify($str);
 }
 function filter_SQL($inputvalue){
     //@todo
