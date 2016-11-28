@@ -1,0 +1,79 @@
+<extend name="Public/new_common"/>
+
+<block name="body_main">
+
+
+    <section id="blog" class="container">
+
+
+        <div class="blog">
+            <div class="row">
+                <div class="col-md-8">
+
+
+                    <div class="center" style="text-align: left;">
+                        <h2>{$info.title}</h2>
+                        <p><i class="fa fa-clock-o " style="margin-right: 5px;"></i><span style="margin-right: 5px;" >{$info.create_time|date="Y-m-d",###}</span><i class="fa fa-user " style="margin-right: 5px;"></i><i>{$info.view}</i></p>
+                    
+                        <div class="baidushare clearfix">
+                            <div class="bdsharebuttonbox bdshare-button-style0-16">
+                                <a href="#" class="bds_more" data-cmd="more"></a>
+                                <a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone"></a>
+                                <a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a>
+                                <a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a>
+                                <a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin"></a>
+                            </div>
+                            <script>
+                                window._bd_share_config = {
+                                    "common": {
+                                        "bdSnsKey": {},
+                                        "bdText": "",
+                                        "bdMini": "2",
+                                        "bdMiniList": false,
+                                        "bdPic": "",
+                                        "bdStyle": "0",
+                                        "bdSize": "16"
+                                    },
+                                    "share": {},
+                                    "selectShare": {
+                                        "bdContainerClass": null,
+                                        "bdSelectMiniList": ["qzone", "tsina", "tqq", "weixin"]
+                                    }
+                                };
+                                with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+                            </script>
+                        </div>
+
+                    </div>
+
+
+                    <div class="blog-item">
+                                <div class="col-xs-12 col-sm-12 blog-content">
+
+                                    {$info.content}
+
+                                    <div class="post-tags">
+
+                                    </div>
+
+                                </div>
+
+                        </div><!--/.blog-item-->
+
+                    </div><!--/.col-md-8-->
+
+                    <include file="News:news_side" />
+
+            </div><!--/.row-->
+
+         </div><!--/.blog-->
+
+    </section><!--/#blog-->
+
+
+
+
+
+</block>
+
+

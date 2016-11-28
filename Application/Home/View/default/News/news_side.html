@@ -1,0 +1,41 @@
+                <aside class="col-md-4">
+                  
+
+
+                    <div class="widget archieve"  style="border:1px #dfdfdf solid;padding: 0px 20px;border-radius: 5px;">
+                        <h3>新闻类别</h3>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <ul class="blogcate_archieve">
+
+                                    <volist name="news_cat_list" id="vo">
+                                    <li><a class="<php>if(strtolower(ACTION_NAME)==$vo['name']){ echo 'active';}</php>" href="{:U($vo['href_url'])}" >{$vo.title}
+                                        
+
+
+                                    <span class="pull-right">({$vo.articlenum})</span></a></li>
+                                    </volist>
+
+                                </ul>
+                            </div>
+                        </div>                     
+                    </div><!--/.archieve-->
+
+
+                    <div class="widget categories" style="border:1px #dfdfdf solid;padding: 0px 20px;border-radius: 5px;">
+                        <h3>网站公告</h3>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <ul class="blog_archieve">
+
+                                    <volist name="noticesData" id="vo">
+                                    <li class="cpk_icon"><a href="{:U($vo['href_url'],array('id'=>$vo['id']))}">{$vo.title|cutCn=20}</a></li>
+                                    </volist>
+
+                                </ul>
+                            </div>
+                        </div>                     
+                    </div><!--/.recent comments-->
+
+
+                </aside>

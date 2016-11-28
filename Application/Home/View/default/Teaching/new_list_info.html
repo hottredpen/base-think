@@ -1,0 +1,56 @@
+<extend name="Public/new_common"/>
+
+<block name="body_main">
+
+
+    <section id="contact-info">
+        <div class="center">                
+            <h2>成员-{$info.title}</h2>
+            <p class="lead">{$info.description}</p>
+        </div>
+        <div class="gmap-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-5  col-sm-offset-1 text-center">
+                        <a href="#"><img src="{$info.cover_url}" class="img-circle" alt="" width="200" height="200"></a>
+                    </div>
+
+                    <div class="col-sm-6 map-content">
+                        <ul class="row">
+                            <li class="col-sm-6">
+                                <address>
+                                    <h5>Head Office</h5>
+                                    <p>1537 Flint Street <br>
+                                    Tumon, MP 96911</p>
+                                    <p>Phone:670-898-2847 <br>
+                                    Email Address:info@domain.com</p>
+                                </address>
+
+                                <address>
+                                    <h5>Zonal Office</h5>
+                                    <p>1537 Flint Street <br>
+                                    Tumon, MP 96911</p>                                
+                                    <p>Phone:670-898-2847 <br>
+                                    Email Address:info@domain.com</p>
+                                </address>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="center" style="margin-top: 20px;">                
+            <h2>详细介绍</h2>
+            {$info['content']}
+        </div>
+
+
+    </section>  <!--/gmap_area -->
+
+
+
+
+</block>
+
+

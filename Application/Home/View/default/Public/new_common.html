@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="">
+    <title><php>echo implode("-",array_filter(array($page_title,$catcnname,C('WEB_SITE_TITLE')))); </php></title>
+    <meta name="keywords" content="{:C('WEB_SITE_KEYWORD')}">
+    <meta name="description" content="{$info.description}{:C('WEB_SITE_DESCRIPTION')}">
+  <!-- core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+    <link href="/css/animate.min.css" rel="stylesheet">
+    <link href="/css/prettyPhoto.css" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
+    <link href="/css/responsive.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->       
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+</head><!--/head-->
+
+<body class="homepage">
+
+    <header id="header">
+        <div class="top-bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-xs-4">
+                        <div class="top-number"><p>免费咨询<i class="fa fa-phone-square"></i>  400-086-3597</p></div>
+                    </div>
+                    <div class="col-sm-6 col-xs-8">
+                       <div class="social">
+
+                            <div class="search">
+                                <form role="form" action="{:U('/news/searchlist')}" method="GET">
+                                    <input type="text" name="searchkeywords" class="search-form" autocomplete="off" placeholder="搜索文章">
+                                    <i class="fa fa-search"></i>
+                                </form>
+                           </div>
+                       </div>
+                    </div>
+                </div>
+            </div><!--/.container-->
+        </div>
+
+        <div style="background-color: #156638;">
+            <div class="container" >
+                <div class="col-sm-6 col-sm-offset-2">
+                <img src="/static/img/logo.png" class="img-responsive" />
+                </div>
+            </div><!--/.container-->
+        </div><!--/.top-bar-->
+
+        <nav class="navbar navbar-inverse" role="banner">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    
+                </div>
+                
+                <div class="collapse navbar-collapse navbar-left">
+                    <ul class="nav navbar-nav">
+                        <li class="<php>if(strtolower(CONTROLLER_NAME)=='index'){ echo 'active';}</php>"><a href="/index.html">首页</a></li>
+                        <li class="<php>if(strtolower(CONTROLLER_NAME)=='about'){ echo 'active';}</php>"><a href="/about.html">关于我们</a></li>
+                        <li class="<php>if(strtolower(CONTROLLER_NAME)=='news'){ echo 'active';}</php>"><a href="/news.html">新闻资讯</a></li>
+                        <li class="<php>if(strtolower(CONTROLLER_NAME)=='teaching'){ echo 'active';}</php>"><a href="/teaching.html">师资力量</a></li>
+                        <li class="<php>if(strtolower(CONTROLLER_NAME)=='class'){ echo 'active';}</php>"><a href="/class.html">课程设置</a></li>
+                        <li class="<php>if(strtolower(CONTROLLER_NAME)=='works'){ echo 'active';}</php>"><a href="/works.html">作品展示</a></li>
+                        <li class="<php>if(strtolower(CONTROLLER_NAME)=='enrollment'){ echo 'active';}</php>"><a href="/enrollment.html">招生简章</a></li>
+                        <li class="<php>if(strtolower(CONTROLLER_NAME)=='talent'){ echo 'active';}</php>"><a href="/talent.html">招贤榜</a></li>
+                    </ul>
+                </div>
+            </div><!--/.container-->
+        </nav><!--/nav-->
+        
+    </header><!--/header-->
+
+
+
+    <block name="body_main">
+
+
+    </block>
+
+
+
+
+    <section id="bottom">
+        <div class="container wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="widget">
+                        <h3>关于我们</h3>
+                        <ul>
+                            <li><a href="/about">关于我们</a></li>
+                            <li><a href="/teaching/shizi.html">师资力量</a></li>
+                            <li><a href="/talent.html">招贤榜</a></li>
+                        </ul>
+                    </div>    
+                </div><!--/.col-md-3-->
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="widget">
+                        <h3>联系我们</h3>
+                        <ul>
+                            <li>联系电话： 400-086-3597</li>
+                            <li>咨询电话：13777462761（李老师）</li>
+                            <li>QQ：<a href="http://wpa.qq.com/msgrd?v=3&uin=2742974934&site=qq&menu=yes" class="icon_qq_24" target="_blank"><img src="http://wpa.qq.com/pa?p=2:2742974934:50" alt="手绘咨询" /></a></li>
+                        </ul>
+                    </div>    
+                </div><!--/.col-md-3-->
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="widget">
+                        <h3>招生帮助</h3>
+                        <ul>
+                            <li><a href="/enrollment.html?see=1">网上报名</a></li>
+                            <li><a href="/class.html">开设课程</a></li>
+                            <li><a href="/enrollment.html?see=5">乘车路线</a></li>
+                        </ul>
+                    </div>    
+                </div><!--/.col-md-3-->
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="widget">
+                        <h3>微信二维码</h3>
+                        <ul>
+                            <li><img class="" src="http://www.chuangpinke.com/static/images/wx.jpg" data-original="/static/images/wx.jpg" alt="官网微信" width="100"></li>
+                        </ul>
+                    </div>    
+                </div><!--/.col-md-3-->
+            </div>
+        </div>
+    </section><!--/#bottom-->
+
+
+
+    <footer id="footer" class="midnight-blue">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-9">
+                    <p>现代手绘（杭州）研究中心 © 版权所有 </p>
+                    <p>杭州总部：杭州五常大道156号西溪创意园5幢三层</p>
+                    <p>下沙分部：下沙2号大街22号十六街区商城1幢1422室（华元电影院1号楼）</p>
+                    <p>免费咨询：400-086-3597     电话：13777462761     邮箱：38649521@qq.com     网址：www.hzxdshpx.com </p>
+                </div>
+                <div class="col-sm-3 text-right" style="margin-top: 100px;">
+                    <a href="http://www.lankuwangluo.com" target="_blank">由浙江蓝酷网络科技提供技术支持</a>
+                </div>
+            </div>
+        </div>
+    </footer><!--/#footer-->
+
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.prettyPhoto.js"></script>
+    <script src="/js/jquery.isotope.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/wow.min.js"></script>
+
+
+<php>if(CONTROLLER_NAME=="Index"){</php>
+<link href="/static/banner/css/style.css" rel="stylesheet">
+<script  src="/static/js/indexbanner.js"></script>
+<script>
+    $('.fullwidthbanner').revolution({
+        delay:9000,
+        startheight:450,
+        startwidth:1120,
+
+        hideThumbs:200,
+
+        thumbWidth:100,                         // Thumb With and Height and Amount (only if navigation Tyope set to thumb !)
+        thumbHeight:50,
+        thumbAmount:5,
+
+        navigationType:"bullet",                    //bullet, thumb, none, both     (No Thumbs In FullWidth Version !)
+        navigationArrows:"verticalcentered",        //nexttobullets, verticalcentered, none
+        navigationStyle:"round",                //round,square,navbar
+
+        touchenabled:"on",                      // Enable Swipe Function : on/off
+        onHoverStop:"on",                       // Stop Banner Timet at Hover on Slide on/off
+
+        navOffsetHorizontal:0,
+        navOffsetVertical:0,
+
+        stopAtSlide:-1,
+        stopAfterLoops:-1,
+
+        shadow:0,                               //0 = no Shadow, 1,2,3 = 3 Different Art of Shadows  (No Shadow in Fullwidth Version !)
+        fullWidth:"on"                          // Turns On or Off the Fullwidth Image Centering in FullWidth Modus
+    }); 
+</script>
+<php>}</php>
+<block name="footerjs">
+
+</block>
+    
+
+</body>
+</html>

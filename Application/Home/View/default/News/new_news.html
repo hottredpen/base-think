@@ -1,0 +1,47 @@
+<extend name="Public/new_common"/>
+
+<block name="body_main">
+
+
+    <section id="blog" class="container">
+        <div class="center">
+            <h2>{$pageCateData['title']}</h2>
+            <p class="lead">About modern hand painting news</p>
+        </div>
+
+        <div class="blog">
+            <div class="row">
+                 <div class="col-md-7 col-md-offset-1">
+
+                    <volist name="list" id="vo">
+                        <div class="blog-item  col-sm">
+                                    
+                                <div class="blog-content">
+                                    <div style="min-height: 180px;">
+                                    <a  href="{:U($vo['href_url'],array('id'=>$vo['id']))}"><img class="img-responsive img-blog" src="{$vo.cover_url}" width="100%" alt="" /></a>
+                                    </div>
+                                    <h2><a href="{:U($vo['href_url'],array('id'=>$vo['id']))}">{$vo.title}</a></h2>
+                                    <h3>{$vo.description}</h3>
+                                    <p><i class="fa fa-clock-o " style="margin-right: 5px;"></i><span style="margin-right: 5px;" >{$vo.create_time|date="Y-m-d",###}</span><i class="fa fa-user " style="margin-right: 5px;"></i><i>{$vo.view}</i></p>
+                                </div>
+                              
+                        </div><!--/.blog-item-->
+                    </volist>
+                       
+                    <div class="m-public-pages" style="margin-right: 20px;">{$page}</div>
+
+                </div><!--/.col-md-8-->
+
+                <include file="News:news_side" />
+
+            </div><!--/.row-->
+        </div>
+    </section><!--/#blog-->
+
+
+
+
+
+</block>
+
+

@@ -1,0 +1,197 @@
+<extend name="Public/new_common"/>
+
+<block name="body_main">
+
+
+<section id="about-us">
+        <div class="container">
+            <div class="center wow fadeInDown">
+                <h2>{$info.title}</h2>
+                <div class="col-md-10 col-md-offset-1" style="text-align: left;">
+                {$info['content']}
+
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <!-- about banner -->
+            <div id="about-slider">
+                <div id="carousel-slider" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators visible-xs">
+                        <volist name="aboutBannerlist" id="vo" key="i">
+                        <li data-target="#carousel-slider" data-slide-to="{$i-1}" class="<php>if($i==1){ echo 'active';}</php>"></li>
+                        </volist>
+                    </ol>
+
+                    <div class="carousel-inner">
+                        <volist name="aboutBannerlist" id="vo" key="i">
+                            <div class="item <php>if($i==1){ echo 'active';}</php>">
+                                <img src="{$vo.cover_url}" class="img-responsive" alt=""> 
+                            </div>
+                        </volist>
+                    </div>
+                    
+                    <a class="left carousel-control hidden-xs" href="#carousel-slider" data-slide="prev">
+                        <i class="fa fa-angle-left"></i> 
+                    </a>
+                    
+                    <a class=" right carousel-control hidden-xs"href="#carousel-slider" data-slide="next">
+                        <i class="fa fa-angle-right"></i> 
+                    </a>
+                </div> <!--/#carousel-slider-->
+            </div><!--/#about-banner-->
+            
+            
+            <div class="clearfix"></div>
+
+            <!-- our-team -->
+            <div class="team" style="margin-top: 60px;">
+                <div class="center wow fadeInDown">
+                    <h2>荣誉讲师</h2>
+                    <p class="lead">honorary lecturers on modern hand painting</p>
+                </div>
+
+                <div class="row clearfix">
+                    
+
+                    <volist name="goodTeacherData" id="vo" key="k">
+                        <div class="col-md-4 col-sm-6   <php>if($k==2){ echo 'col-md-offset-2';}</php>">
+                            <php>if($k <= 2){</php>
+                                <div class="single-profile-top wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
+                                    <div class="media">
+                                        <div class="pull-left">
+                                            <a href="#"><img class="media-object" src="{$vo.cover_url}" alt=""></a>
+                                        </div>
+                                        <div class="media-body">
+                                            <h4>{$vo.title}</h4>
+                                            <h5>{$vo.description}</h5>
+                                            <ul class="tag clearfix">
+                                                <volist name="vo[listdata_format]" id="voo">
+                                                    <li class="btn"><a href="#">{$voo}</a></li>
+                                                </volist>
+                                            </ul>
+                                            
+                                            <ul class="social_icons">
+                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li> 
+                                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div><!--/.media -->
+                                    {$vo.content}
+                                </div>
+                            <php>}</php>
+
+                        </div><!--/.col-lg-4 -->
+                    </volist>
+                
+                </div> <!--/.row -->
+                <div class="row team-bar">
+                    <div class="first-one-arrow hidden-xs">
+                        <hr>
+                    </div>
+                    <div class="first-arrow hidden-xs">
+                        <hr> <i class="fa fa-angle-up"></i>
+                    </div>
+                    <div class="second-arrow hidden-xs">
+                        <hr> <i class="fa fa-angle-down"></i>
+                    </div>
+                    <div class="third-arrow hidden-xs">
+                        <hr> <i class="fa fa-angle-up"></i>
+                    </div>
+                    <div class="fourth-arrow hidden-xs">
+                        <hr> <i class="fa fa-angle-down"></i>
+                    </div>
+                </div> <!--skill_border-->       
+
+                <div class="row clearfix">   
+
+
+
+                    <volist name="goodTeacherData" id="vo" key="k">
+                        <div class="col-md-4 col-sm-6   col-md-offset-2">
+                            <php>if($k > 2 && $k <=4){</php>
+                                <div class="single-profile-top wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
+                                    <div class="media">
+                                        <div class="pull-left">
+                                            <a href="#"><img class="media-object" src="{$vo.cover_url}" alt=""></a>
+                                        </div>
+                                        <div class="media-body">
+                                            <h4>{$vo.title}</h4>
+                                            <h5>{$vo.description}</h5>
+                                            <ul class="tag clearfix">
+                                                <volist name="vo[listdata_format]" id="voo">
+                                                    <li class="btn"><a href="#">{$voo}</a></li>
+                                                </volist>
+                                            </ul>
+                                            
+                                            <ul class="social_icons">
+                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li> 
+                                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div><!--/.media -->
+                                    {$vo.content}
+                                </div>
+                            <php>}</php>
+
+                        </div><!--/.col-lg-4 -->
+                    </volist>
+
+                </div>  <!--/.row-->
+            </div><!--section-->
+
+        </div><!--/.container-->
+    </section><!--/about-us-->
+
+    <section id="portfolio">
+        <div class="container ">
+            <div class="center wow fadeInDown">
+               <h2>教学环境</h2>
+               <p class="lead">About modern hand painting teaching environment</p>
+            </div>
+
+            <div class="row wow fadeInDown" >
+                <div class="portfolio-items">
+                    <volist name="surroundingsData" id="vo">
+                        <div class="portfolio-item joomla bootstrap col-xs-12 col-sm-4 col-md-3">
+                            <div class="recent-work-wrap">
+                                <a class="preview" href="{$vo.cover_url}" rel="prettyPhoto" title="{$vo.title}"><img class="img-circle" src="{$vo.cover_url}" alt="{$vo.title}" height="200"></a>
+                            </div>          
+                        </div>
+                    </volist>
+                </div>
+            </div>
+        </div>
+    </section><!--/#portfolio-item-->
+
+
+    <div class="center wow fadeInDown">
+        <h2>{$contactInfo['title']}</h2>
+        <p class="lead">Modern hand painting contact</p>
+    </div>
+    <section id="conatcat-info">
+
+        <div class="container">
+
+            <div class="row wow fadeInDown">
+                <div class="col-sm-8 col-sm-offset-1">
+                    <div class="media contact-info wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+                        <div class="pull-left">
+                            <i class="fa fa-phone"></i>
+                        </div>
+                        <div class="media-body">
+                            {$contactInfo['content']}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/.container-->    
+    </section><!--/#conatcat-info-->
+
+</block>
+
+

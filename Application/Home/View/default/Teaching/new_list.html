@@ -1,0 +1,45 @@
+<extend name="Public/new_common"/>
+
+<block name="body_main">
+
+
+    <section id="feature" class="transparent-bg" style="padding-top: 0px;">
+        <div class="container">
+            <div class="get-started center wow fadeInDown">
+                <h2>我们的师资队伍</h2>
+                <p class="lead">Our modern hand painting teaching staff</p>
+                <div class="cpk_request">
+                    <h4><a></a></h4>
+                </div>
+            </div><!--/.get-started-->
+
+            <div class="clients-area center wow fadeInDown">
+                <h2>成员简介</h2>
+                <p class="lead">Our modern hand painting team members</p>
+            </div>
+
+            <div class="row">
+                <volist name="list" id="vo" key="k">
+                    <div class="col-md-4 wow fadeInDown">
+                        <div class="clients-comments text-center">
+                            <a href="{:U('teaching/shizi',array('id'=>$vo['id']))}"><img src="{$vo.cover_url}" class="img-circle" alt=""></a>
+                            <div style="margin-top: 30px;"></div>
+                            <volist name="vo['listdata_format']" id="voo">
+                            <p>{$voo}</p>
+                            </volist>
+                            <h4><span>{$vo.title}</span></h4>
+                        </div>
+                    </div>
+                    <php>if($k%3==0){</php><div class="clearfix"></div><php>}</php>
+                </volist>
+           </div>
+
+        </div><!--/.container-->
+    </section><!--/#feature-->
+
+
+
+
+</block>
+
+

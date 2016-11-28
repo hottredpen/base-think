@@ -1,0 +1,121 @@
+<extend name="Public/new_common"/>
+
+<block name="body_main">
+
+
+    <section id="portfolio">
+        <div class="container">
+            <div class="center">
+               <h2>作品展示</h2>
+               <p class="lead">Some modern hand painting works</p>
+            </div>
+        
+
+            <ul class="portfolio-filter text-center">
+                <li><a class="btn btn-default active" href="#" data-filter="*" data-filtercatid="0">所有作品</a></li>
+                <volist name="cateData" id="vo">
+                    <li><a class="btn btn-default" href="#" data-filter=".{$vo.name}" data-filtercatid="{$vo.id}">{$vo.title}</a></li>
+                </volist>
+            </ul><!--/#portfolio-filter-->
+
+            <div class="row">
+                <div id="j_works_list" class="portfolio-items">
+                    <volist name="worksData" id="vo">
+                    <div class="portfolio-item col-xs-6 col-sm-4 col-md-3 {$vo.category_name}">
+                        <div class="recent-work-wrap">
+                            <a class="preview" href="{$vo.cover_url}" rel="prettyPhoto"><img class="img-" src="{$vo.cover_url}" alt="" height="200"></a>
+                            <div class="overlay" style="pointer-events:none;">
+                                <div class="recent-work-inner">
+                                    <h3><a href="#">{$vo.title}</a></h3>
+                                    <p>{$vo.description}</p>
+                                    <i class="fa fa-eye"></i>
+                                </div> 
+                            </div>
+                        </div>          
+                    </div>
+                    </volist>
+                </div>
+                
+            </div>
+            <div class="row"><div class="text-center"><a id="j_load_more" class="btn btn-default J_load_more_works" data-loadpageid="2" data-filter="" href="javascript:;" >加载更多</a>
+            <input  type="hidden" name="fristloadeditemid" value="{$loadeditemid}">
+            <input id="j_loadeditemid" type="hidden" name="loadeditemid" value="">
+            </div></div>
+
+        </div>
+    </section><!--/#portfolio-item-->
+
+
+
+
+
+</block>
+
+<block name="footerjs">
+<script>
+
+$("#j_loadeditemid").val($('input[name=fristloadeditemid]').val());
+
+
+    $(document).on("click",".J_load_more_works",function(){
+        var filtercatid = $(this).attr("data-filtercatid");
+        var hasitemsid = $("#j_loadeditemid").val();
+            $.ajax({
+                url      : "/works/loadmoreworks",
+                type     : "POST",
+                dataType : "json",
+                data     : {hasitemsid:hasitemsid,filtercatid:filtercatid},
+                success  : function (result){
+                    if(result.status == 1){
+                        if(result.msg=="lastdata"){
+                            $("#j_load_more").hide();
+                        }
+                        var tmpcontent;
+                        $.each(result.data,function(i,wdata){
+                            tmpcontent += _workli(wdata);
+                        });
+                        var o_tmpcontent = $(tmpcontent);
+                        $("#j_works_list").append(o_tmpcontent);
+
+                        //如果你需要加载内容中包含了图片，可能需要预先加载，以避免布局元素的叠加情况，代码如下：  
+                        $("#j_works_list").imagesLoaded(function() {  
+                            $("#j_works_list").isotope('appended', o_tmpcontent).isotope('reLayout');  
+                        });  
+
+                        $("a[rel^='prettyPhoto']").prettyPhoto({
+                            social_tools: false
+                        }); 
+
+                        //
+                        var res_hasitemsid = result.dialog;
+                        $("#j_loadeditemid").val(res_hasitemsid);
+                        
+                    }else{
+                        $("#j_load_more").hide();
+                    }
+                }
+            });
+    });
+
+    function _workli(data){
+
+        var str = '<div class="portfolio-item col-xs-6 col-sm-4 col-md-3 '+data.category_name+' isotope-item">\
+                        <div class="recent-work-wrap">\
+                            <a class="preview" href="'+data.cover_url+'" rel="prettyPhoto"><img class="img-" src="'+data.cover_url+'" alt="" height="200"></a>\
+                            <div class="overlay" style="pointer-events:none;">\
+                                <div class="recent-work-inner">\
+                                    <h3><a href="#">'+data.title+'</a></h3>\
+                                    <p>'+data.description+'</p>\
+                                    <i class="fa fa-eye"></i>\
+                                </div> \
+                            </div>\
+                        </div>\
+                    </div>';
+        return str;
+    }
+
+
+</script>
+</block>
+
+

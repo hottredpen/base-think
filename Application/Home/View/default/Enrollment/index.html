@@ -1,0 +1,134 @@
+<extend name="Public/new_common"/>
+
+<block name="body_main">
+
+
+    <section id="content" class="shortcode-item">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-8">
+                    <h2>招生帮助</h2> 
+                    <div class="tab-wrap">
+                        <div class="media">
+                            <div class="parrent pull-left">
+                                <ul class="nav nav-tabs nav-stacked">
+                                    <volist name="helpData" id="vo" key="k">
+                                      <li class="<php>if($_GET['see']==($k-1) ){ echo 'active';}</php>"><a href="#tab{$k}" data-toggle="tab" class="analistic-02">{$vo.title}</a></li>
+                                    </volist>
+                                </ul>
+                            </div>
+
+                            <div class="parrent media-body">
+                                <div class="tab-content">
+
+                                  <volist name="helpData" id="vo" key="k">
+
+                                    <div class="tab-pane <php>if($_GET['see']==($k-1) ){ echo 'active in';}</php>" id="tab{$k}">
+                                        <div class="media">
+                                            <div class="pull-left">
+                                                <notempty name="vo['cover_url']">
+                                                <img class="img-responsive" src="{$vo.cover_url}">
+                                                </notempty>
+                                            </div>
+                                            <div class="media-body">
+                                                <notempty name="vo['listdata_format']">
+                                                <volist name="vo['listdata_format']" id="voo">
+                                                  <p>{$voo}</p>
+                                                </volist>
+                                                <else />
+                                                    {$vo.content}
+                                                </notempty>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                  </volist>
+
+                                </div> <!--/.tab-content-->  
+                            </div> <!--/.media-body--> 
+                        </div> <!--/.media-->     
+                    </div><!--/.tab-wrap-->               
+                </div><!--/.col-sm-6-->
+
+                <div class="col-xs-12 col-sm-4">
+                    <h2>开设班级</h2>
+                    <div class="accordion">
+                        <div class="panel-group" id="accordion_classtype">
+
+
+                          <volist name="classTypeData" id="vo" key="k">
+                          <div class="panel panel-default">
+                            <div class="panel-heading <php>if($k==1){echo 'active';}</php>">
+                              <h3 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_classtype" href="#collapseOne{$k}" style="display: block;">
+                                  {$vo.title}
+                                  <i class="fa fa-angle-right pull-right"></i>
+                                </a>
+                              </h3>
+                            </div>
+
+                            <div id="collapseOne{$k}" class="panel-collapse collapse <php>if($k==1){echo 'in';}</php>">
+                              <div class="panel-body">
+                                  <div class="media accordion-inner">
+                                        <div class="pull-left">
+                                            <notempty name="vo['cover_url']">
+                                            <img class="img-responsive" src="{$vo.cover_url}">
+                                            </notempty>
+                                        </div>
+                                        <div class="media-body">
+                                              {$vo.content}
+                                        </div>
+                                  </div>
+                              </div>
+                            </div>
+                          </div>
+                          </volist>
+
+                        </div><!--/#accordion1-->
+                    </div>
+                </div>
+            </div><!--/.row-->
+        </div><!--/.container-->
+    </section><!--/#content-->
+
+    <section class="pricing-area shortcode-item" style="padding-top: 10px;">
+        <div class="container">
+            <div class="get-started center wow fadeInDown" style="margin-bottom:60px;">
+                <h2>收费标准</h2>
+                <p class="lead">网上报名学费立减100元！仅限杭州地区精品班课程！</p>
+                <div class="cpk_request">
+                    <h4><a></a></h4>
+                </div>
+            </div><!--/.get-started-->
+            <div class="row text-center">
+
+
+                <volist name="classmoneyData" id="vo" key="k">
+
+                  <div class="col-sm-4 plan price-{$k} wow fadeInDown">
+                      <ul>
+                          <li class="heading-{$k}">
+                              <h1>{$vo.title}</h1>
+                              <span>{$vo['listdata_format'][0]}</span>
+                          </li>
+                          <volist name="vo['listdata_format']" id="voo" key="kk">
+                            <php>if($kk>1){</php>
+                              <li>{$voo}</li>
+                            <php>}</php>
+                          </volist>
+                          <li class="plan-action">
+                              <a href="{:U($vo['href_url'],array('id'=>$vo['id']))}" class="btn btn-primary">查看详情</a>
+                          </li>
+                      </ul>
+                  </div>
+
+                </volist>
+            </div>
+        </div>
+    </section><!--/pricing_area-->
+
+
+
+</block>
+
+
