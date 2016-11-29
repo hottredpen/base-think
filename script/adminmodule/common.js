@@ -1,4 +1,4 @@
-define(['jquery','dialog'],function($,dialog){
+define(['jquery','dialog','validator'],function($,dialog){
     $(document).on("click",".J_showdialog",function(){
         var  self      = $(this),
         dtitle    = self.attr('data-title'),
@@ -16,7 +16,7 @@ define(['jquery','dialog'],function($,dialog){
                         return false;
                     },
                     cancelValue: '取消',
-                    cancel: function () {}          
+                    cancel: function () {},
                 });
                 d.showModal();
             }
@@ -29,10 +29,5 @@ define(['jquery','dialog'],function($,dialog){
         bindClassTo: '.form-group',
         formClass: 'n-default n-bootstrap',
         msgClass: 'n-right'
-    });
-    $('#j_artdialog_form').validator({
-        timely: 2,
-        stopOnError: true,
-        theme: 'yellow_right'
     });
 });
