@@ -1,59 +1,66 @@
-<!--菜单添加-->
-<div class="dialog_content">
-	<form id="j_artdialog_form" name="info_form" action="{:u('menu/add')}" method="post">
-    <table width="100%" class="table_form">
-    	<tr>
-          <th width="100">{:L('menu_parentid')} :</th>
-          <td>
-          	<select name="pid">
-            	<option value="0">{:L('no_parent_menu')}</option>
-            	{$select_menus}
-            </select>
-          </td>
-        </tr>
-        <tr>
-          <th>{:L('menu_name')} :</th>
-          <td><input type="text" name="name" id="name" datatype="m" errormsg="请输入您的手机号码！" class="input-text"></td>
-        </tr>
-        <tr>
-          <th>{:L('module_name')} :</th>
-          <td><input type="text" name="module_name" id="module_name" class="input-text"></td>
-        </tr>
-        <tr>
-          <th>{:L('action_name')} :</th>
-          <td><input type="text" name="action_name" id="action_name" class="input-text"></td>
-        </tr>
-        <tr> 
-          <th>{:L('att_data')} :</th>
-          <td><input type="text" name="data" id="data" class="input-text"></td>
-        </tr>
-        <tr>
-          <th>{:L('remark')} :</th>
-          <td><textarea name="remark" id="remark" cols="40" rows="3"></textarea></td>
-        </tr>
-        <tr>
-          <th>{:L('menu_display')} :</th>
-          <td>
-            <label><input type="radio" name="display" class="radio_style" value="1" checked="checked"> {:L('yes')}&nbsp;&nbsp;</label>
-            <label><input type="radio" name="display" class="radio_style" value="0"> {:L('no')}</label>
-          </td>
-        </tr>
-    </table>
-    </form>
+    <style>
+    .n-bootstrap .msg-wrap {font-size: 14px; margin-top: 3px}
+    </style>
+<div class="container" style="margin-top:30px">
+    <div class="col-md-5 col-md-offset-2">
+
+        <form id="form1" data-validator-option="{theme:'bootstrap', timely:2, stopOnError:true}">
+
+            <div class="form-group">
+                <label class="control-label">Username</label>
+                <input type="text" class="form-control" name="username"
+                    data-rule="required;username;"
+                    data-rule-username="[/[\w\d]{4,30}/, 'Please enter 3-12 digits, letters, underscores']"
+                    data-tip="You can use letters, numbers and periods"
+                >
+            </div>
+            <div class="form-group">
+                <label class="control-label">Password</label>
+                <input type="password" class="form-control" name="pwd"
+                    data-rule="Password: required; length(8~16)"
+                    data-tip="Please fill in at least eight characters"
+                >
+            </div>
+            <div class="form-group">
+                <label class="control-label">Verify Password</label>
+                <input type="password" class="form-control" name="pwdAgain" data-rule="Verify Password: required; match(pwd)">
+            </div>
+            <div class="form-group">
+                <label class="control-label">Gender</label>
+                <select class="form-control" name="gender" data-rule="required">
+                    <option value="">select ...</option>
+                    <option value="1">Male</option>
+                    <option value="2">Female</option>
+                    <option value="3">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Email</label>
+                <input type="text" class="form-control" name="email" data-rule="required;email">
+            </div>
+            <div class="form-group">
+                <label class="control-label">Interest</label>
+                <div class="">
+                    <label class="checkbox-inline"><input type="checkbox" name="interest" data-rule="checked">sports</label>
+                    <label class="checkbox-inline"><input type="checkbox" name="interest">movie</label>
+                    <label class="checkbox-inline"><input type="checkbox" name="interest">game</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Note</label>
+                <textarea class="form-control" data-rule="required;"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label class="checkbox-inline"><input type="checkbox" id="agree_arguments" data-rule="checked">I agree to the service agreement.</label>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="reset" class="btn btn-default">reset</button>
+            </div>
+
+        </form>
+
+    </div>
 </div>
-
-<script>
-$(function(){
-    
-	// $.formValidator.initConfig({formid:"j_artdialog_form",autotip:true});
-	// $("#name").formValidator({ onshow:"请输入", onfocus:"请输入", oncorrect:"输入正确"}).inputValidator({ min:1, onerror:"请输入1"});
-	// $("#module_name").formValidator({ onshow:"请输入", onfocus:"请输入", oncorrect:"输入正确"}).inputValidator({ min:1, onerror:"请输入1"});
-	// $("#action_name").formValidator({ onshow:"请输入", onfocus:"请输入", oncorrect:"输入正确"}).inputValidator({ min:1, onerror:"请输入1"});
-	
-
-
-
-
-
-})
-</script>
