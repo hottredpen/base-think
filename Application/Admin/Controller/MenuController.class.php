@@ -7,6 +7,7 @@ class menuController extends BackController {
     public function _initialize() {
         parent::_initialize();
         $this->_mod = D('Menu');
+        $this->menuid = 123;
     }
 
     public function index() {
@@ -87,39 +88,13 @@ class menuController extends BackController {
         $this->assign('select_menus', $select_menus);
     }
     public function add() {
-
         if (IS_POST) {
-            $mod = D($this->_name);
-            if (false === $data = $mod->create()) {
-                IS_AJAX && $this->ajaxReturn(0, $mod->getError());
-                $this->error($mod->getError());
-            }
-
-            if (method_exists($this, '_before_insert')) {
-                $data = $this->_before_insert($data);
-            }
-             
-            if( $mod->add($data) ){
-                if( method_exists($this, '_after_insert')){
-                    $id = $mod->getLastInsID();
-                    $this->_after_insert($id);
-                }
-                IS_AJAX && $this->ajaxReturn(1, L('operation_success'), '', 'add');
-                $this->success(L('operation_success'));
-            } else {
-                IS_AJAX && $this->ajaxReturn(0, L('operation_failure'));
-                $this->error(L('operation_failure'));
-            }
+            IS_AJAX && $this->ajaxReturn(1, "成功");
+            $this->success("成功");
         } else {
-
-            if(method_exists($this, '_before_add')){
-
-                $this->_before_add();
-            }
-
-            $this->assign('open_validator', true);
             if (IS_AJAX) {
                 $response = $this->fetch();
+                $this->assign("menuid",$this->menuid);
                 $this->ajaxReturn(1, '', $response);
             } else {
                 $this->display();

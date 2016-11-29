@@ -1,6 +1,6 @@
 <!--菜单添加-->
 <div class="dialog_content">
-	<form id="info_form" name="info_form" action="{:u('menu/add')}" method="post">
+	<form id="j_artdialog_form" name="info_form" action="{:u('menu/add')}" method="post">
     <table width="100%" class="table_form">
     	<tr>
           <th width="100">{:L('menu_parentid')} :</th>
@@ -13,7 +13,7 @@
         </tr>
         <tr>
           <th>{:L('menu_name')} :</th>
-          <td><input type="text" name="name" id="name" class="input-text"></td>
+          <td><input type="text" name="name" id="name" datatype="m" errormsg="请输入您的手机号码！" class="input-text"></td>
         </tr>
         <tr>
           <th>{:L('module_name')} :</th>
@@ -43,22 +43,17 @@
 </div>
 
 <script>
-// $(function(){
+$(function(){
     
-// 	$.formValidator.initConfig({formid:"info_form",autotip:true});
-// 	$("#name").formValidator({ onshow:lang.please_input+lang.menu_name, onfocus:lang.please_input+lang.menu_name, oncorrect:lang.input_right}).inputValidator({ min:1, onerror:lang.please_input+lang.menu_name});
-// 	$("#module_name").formValidator({ onshow:lang.please_input+lang.module_name, onfocus:lang.please_input+lang.module_name, oncorrect:lang.input_right}).inputValidator({ min:1, onerror:lang.please_input+lang.module_name});
-// 	$("#action_name").formValidator({ onshow:lang.please_input+lang.action_name, onfocus:lang.please_input+lang.action_name, oncorrect:lang.input_right}).inputValidator({ min:1, onerror:lang.please_input+lang.action_name});
+	// $.formValidator.initConfig({formid:"j_artdialog_form",autotip:true});
+	// $("#name").formValidator({ onshow:"请输入", onfocus:"请输入", oncorrect:"输入正确"}).inputValidator({ min:1, onerror:"请输入1"});
+	// $("#module_name").formValidator({ onshow:"请输入", onfocus:"请输入", oncorrect:"输入正确"}).inputValidator({ min:1, onerror:"请输入1"});
+	// $("#action_name").formValidator({ onshow:"请输入", onfocus:"请输入", oncorrect:"输入正确"}).inputValidator({ min:1, onerror:"请输入1"});
 	
-// 	$('#info_form').ajaxForm({success:complate,dataType:'json'});
-// 	function complate(result){
-// 		if(result.status == 1){
-// 			$.dialog.get(result.dialog).close();
-// 			$.ftxia.tip({content:result.msg});
-// 			window.location.reload();
-// 		} else {
-// 			$.ftxia.tip({content:result.msg, icon:'alert'});
-// 		}
-// 	}
-// })
+
+
+
+
+
+})
 </script>
