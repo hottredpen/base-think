@@ -1,0 +1,69 @@
+<div class="container" style="margin-top:30px;width: 500px;">
+    <div class="col-md-8 ">
+        <form id="j_artdialog_form"  method="POST" action="{:U('menu/add')}" data-validator-option="{theme:'bootstrap', timely:2, stopOnError:true}" autocomplete="off">
+
+            <div class="form-group">
+                <label class="control-label">{:L('menu_parentid')}</label>
+                <select class="form-control" name="pid" data-rule="required">
+                        <option value="0">{:L('no_parent_menu')}</option>
+                        {$select_menus}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">{:L('menu_name')}</label>
+                <input type="text" class="form-control" name="name"
+                    data-rule="required;"
+                    data-tip="输入中文菜单名"
+                >
+            </div>
+            <div class="form-group">
+                <label class="control-label">{:L('module_name')} </label>
+                <input type="text" class="form-control" name="module_name"
+                    data-rule="required;"
+                    data-tip="输入英文模块名（小写）"
+                >
+            </div>
+            <div class="form-group">
+                <label class="control-label">{:L('action_name')} </label>
+                <input type="text" class="form-control" name="action_name" data-rule="required;">
+            </div>
+            <div class="form-group">
+                <label class="control-label">{:L('att_data')} </label>
+                <input type="text" class="form-control" name="data" data-rule="">
+            </div>
+            <div class="form-group">
+                <label class="control-label">{:L('remark')} </label>
+                <textarea class="form-control" data-rule=""></textarea>
+            </div>
+            <div class="form-group">
+                <label class="control-label">{:L('menu_display')} </label>
+                <div class="">
+                    <label class="radio-inline"><input type="radio" name="display" value="1" data-rule="checked"> {:L('yes')}</label>
+                    <label class="radio-inline"><input type="radio" name="display" value="0" >{:L('no')}</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="reset" class="btn btn-default">reset</button>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+<script>
+    $('#j_artdialog_form').validator(function(form){
+        var action = $(this).attr("action");
+            $.ajax({
+            type: 'post', // 提交方式 get/post
+            url: action, // 需要提交的 url
+            data: $(form).serialize(),
+            success: function(data) { // data 保存提交后返回的数据，一般为 json 数据
+                // 此处可对 data 作相关处理
+                alert('提交成功！');
+            }
+        });
+    });
+</script>

@@ -45,4 +45,24 @@ class BackController extends CommonBaseController {
   //           }
   //       }
     }
+
+
+    /**
+     * 快速修改字段
+     * 此方法尽量少用
+     * 使用时最好加入一个允许操作表或者不允许操作表
+     */
+    public function ajax_edit(){
+        $pk    = $this->_mod->getPk();
+        $id    = I($pk,0,'intval');
+        $field = I('field',"",'trim');
+        $val   = I('val',"",'trim');
+        $res = $this->_mod->where(array($pk=>$id))->setField($field, $val);
+        if($res!==false){
+            $this->ajaxReturn(1);
+        }else{
+            $this->ajaxReturn(0);
+        }
+    }
+
 }

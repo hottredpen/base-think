@@ -5,8 +5,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <link href="__ASSETS__/admin/css/style.css" rel="stylesheet"/>
 <link href="__STATIC__/bootstrap/css/bootstrap.css" rel="stylesheet"/>
-<link href="__ASSETS__/ui-dialog.css" rel="stylesheet"/>
-<link href="/script/lib/validator/dist/jquery.validator.css" rel="stylesheet"/>
+<link href="__ASSETS__/basethink/plugins/artDialog/css/ui-dialog.css" rel="stylesheet"/>
+<link href="__ASSETS__/basethink/plugins/validator/dist/jquery.validator.css" rel="stylesheet"/>
+<link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
 <title>后台管理</title>
 </head>
 <body>
@@ -18,12 +19,125 @@
 </block>
 
 <script src="__ASSETS__/admin/js/jquery.js"></script>
-
-
-<script data-main="/script/adminmodule/<php>echo $moduleForPage; </php>Page" src="/script/require.js"></script>
+<script src="__ASSETS__/admin/js/listTable.js"></script>
+<script src="__ASSETS__/basethink/plugins/artDialog/dist/dialog-min.js"></script>
+<script src="__ASSETS__/basethink/plugins/validator/dist/jquery.validator.js"></script>
 <block name="footerjs">
 
 </block>
+<script>
+function cpk_tip(msg){
+    var d = dialog({
+        content: '<span class="text-success"><i class="fa  fa-check-circle"></i>'+msg+'</span>'
+    });
+    d.show();
+    setTimeout(function () {
+        d.close().remove();
+    }, 2000);
+}
+function cpk_dialog_remove(dialogid){
+	if(typeof dialogid == "undefined"){
+		dialogid = "j_artdialog_form";
+	}
+    var f= dialog.get(dialogid);
+    f.close().remove();
+}
+function cpk_alert(msg){
+	var d = dialog({
+		id   : "j_artdialog_alert",
+	    title: '提示',
+	    content: msg,
+	    fixed : true,
+	    okValue : "确定",
+	    ok: function () {},
+	    statusbar: '<label><input type="checkbox">不再提醒</label>'
+	});
+	d.show();
+}
 
+
+
+$(function(){
+	$('.J_tablelist').listTable();
+});
+
+
+
+$(document).on("click",".J_showdialog",function(){
+    var o_this = $(this),
+    dtitle     = o_this.attr('data-title'),
+    duri       = o_this.attr('data-uri'),
+    dcallback  = o_this.attr('data-callback');
+
+    $.getJSON(duri, function(result){
+        if(result.status == 1){
+            var d = dialog({
+            	id : "j_artdialog_form",
+                title: dtitle,
+                content: result.data,
+                okValue: '确定',
+                ok: function () {
+                    $("#j_artdialog_form").submit();
+                    return false;
+                },
+                cancelValue: '取消',
+                cancel: function () {},
+            });
+            d.showModal();
+        }
+    });
+    return false;
+});
+$.validator.setTheme('bootstrap', {
+    validClass: 'has-success',
+    invalidClass: 'has-error',
+    bindClassTo: '.form-group',
+    formClass: 'n-default n-bootstrap',
+    msgClass: 'n-right'
+});
+
+
+$(document).on("click",".J_confirmurl",function(){
+	var o_this = $(this),
+	id         = o_this.attr('data-id')
+	uri        = o_this.attr('data-uri'),
+	dtitle     = o_this.attr('data-title'),
+	msg        = o_this.attr('data-msg'),
+	callback   = o_this.attr('data-callback');
+
+    var d = dialog({
+    	id : "j_artdialog_confirm",
+        title: dtitle,
+        content: msg,
+        okValue: '确定',
+        ok: function () {
+		    $.ajax({
+		        type : 'post',
+		        url  : uri,
+		        data : {id:id},
+		        success: function(res) {
+		            if(res.status==1){
+		                cpk_tip(res.msg);
+						if(callback != undefined){
+							eval(callback+'(self)');
+						}else{
+							window.location.reload();
+						}
+		            }else{
+		                cpk_alert(res.msg)
+		            }
+		        }
+		    });
+		    this.remove();
+            return false;
+        },
+        cancelValue: '取消',
+        cancel: function () {},
+    });
+    d.showModal();
+});
+
+
+</script>
 </body>
 </html>

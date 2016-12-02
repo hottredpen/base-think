@@ -1,6 +1,6 @@
 <!--编辑菜单-->
 <div class="dialog_content">
-    <form id="info_form" name="info_form" action="{:U('menu/edit')}" method="post">
+    <form id="j_artdialog_form" action="{:U('menu/saveMenu')}" method="post">
     <table width="100%" class="table_form">
         <tr>
             <th width="100">{:L('menu_parentid')} :</th>
@@ -45,21 +45,20 @@
 
 <script>
 $(function(){
-    $.formValidator.initConfig({formid:"info_form",autotip:true});
-
-    $("#name").formValidator({ onshow:lang.please_input+lang.menu_name, onfocus:lang.please_input+lang.menu_name, oncorrect:lang.input_right}).inputValidator({ min:1, onerror:lang.please_input+lang.menu_name}).defaultPassed();
-    $("#module_name").formValidator({ onshow:lang.please_input+lang.module_name, onfocus:lang.please_input+lang.module_name, oncorrect:lang.input_right}).inputValidator({ min:1, onerror:lang.please_input+lang.module_name}).defaultPassed();
-    $("#action_name").formValidator({ onshow:lang.please_input+lang.action_name, onfocus:lang.please_input+lang.action_name, oncorrect:lang.input_right}).inputValidator({ min:1, onerror:lang.please_input+lang.action_name}).defaultPassed();
-
-    $('#info_form').ajaxForm({success:complate,dataType:'json'});
-    function complate(result){
-        if(result.status == 1){
-            $.dialog.get(result.dialog).close();
-            $.ftxia.tip({content:result.msg});
-            window.location.reload();
-        } else {
-            $.ftxia.tip({content:result.msg, icon:'alert'});
-        }
-    }
+    $('#j_artdialog_form').validator(function(form){
+        $.ajax({
+            type : 'post',
+            url  : $(form).attr("action"),
+            data : $(form).serialize(),
+            success: function(res) {
+                if(res.status==1){
+                    cpk_dialog_remove("j_artdialog_form");
+                    cpk_tip(res.msg);
+                }else{
+                    cpk_alert(res.msg)
+                }
+            }
+        });
+    });
 });
 </script>

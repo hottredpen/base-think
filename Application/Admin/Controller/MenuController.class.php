@@ -11,9 +11,6 @@ class menuController extends BackController {
     }
 
     public function index() {
-        $this->assign("moduleForPage","menu");
-
-
         $tree = new Tree();
         $tree->icon = array('&nbsp;&nbsp;&nbsp;│ ','&nbsp;&nbsp;&nbsp;├─ ','&nbsp;&nbsp;&nbsp;└─ ');
         $tree->nbsp = '&nbsp;&nbsp;&nbsp;';
@@ -21,9 +18,9 @@ class menuController extends BackController {
         $array = array();
         foreach($result as $r) {
             $r['cname'] = L($r['name']);
-            $r['str_manage'] = '<a href="javascript:;" class="J_showdialog" data-uri="'.U('menu/add',array('pid'=>$r['id'])).'" data-title="'.L('add_submenu').'" data-id="add" data-width="500" data-height="350">'.L('add_submenu').'</a> |
-                                <a href="javascript:;" class="J_showdialog" data-uri="'.U('menu/edit',array('id'=>$r['id'])).'" data-title="'.L('edit').' - '. $r['name'] .'" data-id="edit" data-width="500" data-height="350">'.L('edit').'</a> |
-                                <a href="javascript:;" class="J_confirmurl" data-acttype="ajax" data-uri="'.U('menu/delete',array('id'=>$r['id'])).'" data-msg="'.sprintf(L('confirm_delete_one'),$r['name']).'">'.L('delete').'</a>';
+            $r['str_manage'] = '<a href="javascript:;" class="J_showdialog" data-uri="'.U('menu/getAddForm',array('pid'=>$r['id'])).'" data-title="'.L('add_submenu').'" data-id="add" data-width="500" data-height="350">'.L('add_submenu').'</a> |
+                                <a href="javascript:;" class="J_showdialog" data-uri="'.U('menu/getEditForm',array('id'=>$r['id'])).'" data-title="'.L('edit').' - '. $r['name'] .'" data-id="edit" data-width="500" data-height="350">'.L('edit').'</a> |
+                                <a href="javascript:;" class="J_confirmurl" data-acttype="ajax" data-uri="'.U('menu/deleteMenu').'" data-id="'.$r['id'].'" data-msg="'.sprintf(L('confirm_delete_one'),$r['name']).'">'.L('delete').'</a>';
             $array[] = $r;
         }
         $a = $r['display']?"enabled":"disabled";
@@ -44,7 +41,7 @@ class menuController extends BackController {
 
         $big_menu = array(
             'title' => '添加菜单',
-            'iframe' => U('menu/add'),
+            'iframe' => U('menu/getAddForm'),
             'id' => 'add',
             'width' => '500',
             'height' => '350',
@@ -54,8 +51,7 @@ class menuController extends BackController {
         $this->display();
     }
 
-    public function _before_add()
-    {
+    public function _before_getAddForm(){
         $tree = new Tree();
         $result = $this->_mod->select();
         $array = array();
@@ -70,8 +66,7 @@ class menuController extends BackController {
         $this->assign('select_menus', $select_menus);
     }
 
-    public function _before_edit()
-    {
+    public function _before_getEditForm(){
         $id = I('id', 0, 'intval');
         $info = $this->_mod->find($id);
         $this->assign('info', $info);
@@ -87,18 +82,48 @@ class menuController extends BackController {
         $select_menus = $tree->get_tree(0, $str);
         $this->assign('select_menus', $select_menus);
     }
-    public function add() {
-        if (IS_POST) {
-            IS_AJAX && $this->ajaxReturn(1, "成功");
-            $this->success("成功");
+    public function getAddForm(){
+        if (IS_AJAX) {
+            $response = $this->fetch("add");
+            $this->assign("menuid",$this->menuid);
+            $this->ajaxReturn(1, '', $response);
         } else {
-            if (IS_AJAX) {
-                $response = $this->fetch();
-                $this->assign("menuid",$this->menuid);
-                $this->ajaxReturn(1, '', $response);
-            } else {
-                $this->display();
-            }
+            $this->display();
+        }
+    }
+    public function addMenu() {
+        $res = D("AdminMenu","HandleObject")->addMenu();
+        if($res['error'] == 0 && $res['info'] != ""){
+            $this->cpk_success($res['info']);
+        }else{
+            $this->cpk_error($res['info']);
+        }
+    }
+    public function getEditForm(){
+        if (IS_AJAX) {
+            $response = $this->fetch("edit");
+            $this->assign("menuid",$this->menuid);
+            $this->ajaxReturn(1, '', $response);
+        } else {
+            $this->display();
+        }
+    }
+    public function saveMenu(){
+        $id  = I("id",0,"intval");
+        $res = D("AdminMenu","HandleObject")->saveMenu($id);
+        if($res['error'] == 0 && $res['info'] != ""){
+            $this->cpk_success($res['info']);
+        }else{
+            $this->cpk_error($res['info']);
+        }
+    }
+    public function deleteMenu(){
+        $id = I("id",0,"intval");
+        $res = D("AdminMenu","HandleObject")->deleteMenu($id);
+        if($res['error'] == 0 && $res['info'] != ""){
+            $this->cpk_success($res['info']);
+        }else{
+            $this->cpk_error($res['info']);
         }
     }
 }

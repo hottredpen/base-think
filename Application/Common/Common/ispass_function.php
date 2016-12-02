@@ -58,3 +58,13 @@ function str_split_unicode($str, $l = 0) {
     }
     return preg_split("//u", $str, -1, PREG_SPLIT_NO_EMPTY);
 }
+function is_only_char_num_underline_pass($str){
+    $pattern = "/^[A-Za-z0-9_]+$/u";//过滤非法字符
+    $strArr  = str_split_unicode($str);
+    foreach ($strArr as $key => $value) {
+        if (!preg_match($pattern, $value)){
+            return false;
+        }
+    }
+    return true;
+}
