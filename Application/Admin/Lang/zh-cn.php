@@ -117,6 +117,17 @@ return array(
 		'show_index'             => '首页显示',
 
 
+		'site_base_config'   => '站点信息设置',
+		'site_status_config' => '站点状态设置',
+		'site_url'           => '网站域名',
+		'site_name'          => '网站名称',
+		'site_domain'        => '网站域名',
+		'site_icp'           => 'ICP证书号',
+		'statistics_code'    => '统计代码',
+		'site_status'        => '网站状态',
+		'closed_reason'      => '关闭说明',
+
+
  //    'PAY_METHOD_RATE_DESC' => '说明：顾客将支付订单总金额乘以此费率作为手续费；',
  //    'author'=>'插件作者',
  //    'version'=>'插件版本',
@@ -386,15 +397,7 @@ return array(
  //        'nav_link' => '链接地址',
  //    ),
  
- //    'site_base_config' => '站点信息设置',
- //    'site_status_config' => '站点状态设置',
-	// 'site_url' => '网站域名',
- //    'site_name' => '网站名称',
- //    'site_domain' => '网站域名',
- //    'site_icp' => 'ICP证书号',
- //    'statistics_code' => '统计代码',
- //    'site_status' => '网站状态',
- //    'closed_reason' => '关闭说明',
+
 
  
  //    'ipban_switch' => '启用禁止 IP',

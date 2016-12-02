@@ -19,7 +19,7 @@ class menuController extends BackController {
         foreach($result as $r) {
             $r['cname'] = L($r['name']);
             $r['str_manage'] = '<a href="javascript:;" class="J_showdialog" data-uri="'.U('menu/getAddForm',array('pid'=>$r['id'])).'" data-title="'.L('add_submenu').'" data-id="add" data-width="500" data-height="350">'.L('add_submenu').'</a> |
-                                <a href="javascript:;" class="J_showdialog" data-uri="'.U('menu/getEditForm',array('id'=>$r['id'])).'" data-title="'.L('edit').' - '. $r['name'] .'" data-id="edit" data-width="500" data-height="350">'.L('edit').'</a> |
+                                <a href="javascript:;" class="J_showdialog" data-uri="'.U('menu/getEditForm',array('id'=>$r['id'])).'" data-title="'.L('edit').' - '. $r['name'].'" data-id="edit" data-width="500" data-height="350">'.L('edit').'</a> |
                                 <a href="javascript:;" class="J_confirmurl" data-acttype="ajax" data-uri="'.U('menu/deleteMenu').'" data-id="'.$r['id'].'" data-msg="'.sprintf(L('confirm_delete_one'),$r['name']).'">'.L('delete').'</a>';
             $array[] = $r;
         }
@@ -28,7 +28,7 @@ class menuController extends BackController {
         $str  = "<tr>
                 <td align='center'><input type='checkbox' value='\$id' class='J_checkitem'></td>
                 <td align='center'>\$id</td>
-                <td>\$spacer<span data-tdtype='edit' data-field='name' data-id='\$id' class='tdedit'>\$name</span></td>
+                <td>\$spacer<span data-tdtype='edit' data-field='name' data-id='\$id' class='tdedit'>\$name\$module_name \$action_name </span></td>
                 <td align='center'><span data-tdtype='edit' data-field='ordid' data-id='\$id' class='tdedit'>\$ordid</span></td>".
                 
                 "<td align='center'><img data-tdtype='toggle' data-id='{\$id}' data-field='status' data-value='{\$status}' src='/static/images/admin/toggle_{\$status}.gif' /></td>".

@@ -1,0 +1,77 @@
+<extend name="Public:admin_base" />
+
+<block name="body_main">
+
+<div class="pad_lr_10">
+	<form id="info_form" action="{:u('setting/saveSetting')}" method="post" enctype="multipart/form-data">
+	<table width="100%" class="table_form">
+		<tr>
+            <th width="150">{:L('site_url')} :</th>
+            <td><input type="text" name="setting[site_url]" class="input-text" size="30" value="{:C('hzgxr_site_url')}">
+	    <span class="gray ml10">网站地址必须以http:// 开头 / 斜杠结尾</span>
+	    </td>
+        </tr>
+        <tr>
+            <th width="150">{:L('site_name')} :</th>
+            <td><input type="text" name="setting[site_name]" class="input-text" size="30" value="{:C('hzgxr_site_name')}"></td>
+        </tr>
+    
+        <tr>
+            <th>{:L('site_icp')} :</th>
+            <td><input type="text" name="setting[site_icp]" class="input-text" size="30" value="{:C('hzgxr_site_icp')}"></td>
+        </tr>
+         <tr>
+            <th>最低提现金额 :</th>
+            <td><input type="text" name="setting[min_cash_money]" class="input-text" size="30" value="{:C('hzgxr_min_cash_money')}"></td>
+        </tr>
+        <tr>
+            <th>帮助中心热搜 :</th>
+            <td>
+                <input type="text" name="setting[help_hot_words]" class="input-text" size="60" value="{:C('hzgxr_help_hot_words')}"><span class="gray ml10">请以空格或逗号相隔</span>
+            </td>
+        </tr>
+
+        <tr>
+            <th>{:L('statistics_code')} :</th>
+            <td><textarea rows="6" cols="80" name="setting[statistics_code]">{:C('hzgxr_statistics_code')}</textarea></td>
+        </tr>
+
+        <tr>
+            <th>ADMIN_ACCESS :</th>
+            <td><input type="text" name="setting[admin_acess]" class="input-text" size="60" value="{:C('hzgxr_admin_acess')}"></td>
+        </tr>
+        <tr>
+            <th>留言是否需审核 :</th>
+            <td>
+                <label><input type="radio" name="setting[tmsg_is_need]" value="1" <if condition="C('hzgxr_tmsg_is_need') eq 1">checked="checked"</if>> 是</label> &nbsp;&nbsp;
+                <label><input type="radio" name="setting[tmsg_is_need]" value="0" <if condition="C('hzgxr_tmsg_is_need') eq 0">checked="checked"</if>> 否</label>
+            </td>
+        </tr>
+        
+		<tr>
+            <th width="150">{:L('ipban_switch')} :</th>
+            <td>
+                <label><input type="radio" <if condition="C('hzgxr_ipban_switch') eq '1'">checked="checked"</if> value="1" name="setting[ipban_switch]"> {:L('open')}</label> &nbsp;&nbsp;
+                <label><input type="radio" <if condition="C('hzgxr_ipban_switch') eq '0'">checked="checked"</if> value="0" name="setting[ipban_switch]"> {:L('close')}</label>
+                <span class="gray ml10">如果本站没有添加禁止IP地址库，建议关闭改功能提升性能</span>
+            </td>
+        </tr>
+    	<tr>
+        	<th>{:L('site_status')} :</th>
+        	<td>
+            	<label><input type="radio" class="J_change_status" <if condition="C('hzgxr_site_status') eq '1'">checked="checked"</if> value="1" name="setting[site_status]"> {:L('open')}</label> &nbsp;&nbsp;
+                <label><input type="radio" class="J_change_status" <if condition="C('hzgxr_site_status') eq '0'">checked="checked"</if> value="0" name="setting[site_status]"> {:L('close')}</label>
+            </td>
+    	</tr>
+        <tr id="J_closed_reason" <if condition="C('hzgxr_site_status') eq 1">class="hidden"</if>>
+        	<th>{:L('closed_reason')} :</th>
+        	<td><textarea rows="4" cols="50" name="setting[closed_reason]" id="closed_reason">{:C('hzgxr_closed_reason')}</textarea></td>
+    	</tr>
+        <tr>
+        	<th></th>
+        	<td><input type="hidden" name="menuid"  value="{$menuid}"/><input type="submit" class="smt mr10" value="{:L('submit')}"/></td>
+    	</tr>
+	</table>
+	</form>
+</div>
+</block>

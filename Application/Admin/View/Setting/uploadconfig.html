@@ -1,0 +1,121 @@
+<extend name="Public:admin_base" />
+
+<block name="body_main">
+<php>
+
+
+function get_upload_return_type_name($id){
+    switch ($id) {
+        case -1:
+            $name = "不保留原图（裁剪）返回";
+            break;
+        case 0:
+            $name = "原图";
+            break;
+        case 1:
+            $name = "裁剪图";
+            break;
+        case 2:
+            $name = "缩放图";
+            break;
+        default:
+            # code...
+            break;
+    }
+    return $name;
+}
+
+function get_sub_type_name($id){
+    switch ($id) {
+        case 0:
+            $name = "不裁剪";
+            break;
+        case 1:
+            $name = "居中裁剪";
+            break;
+        case 2:
+            $name = "左上角裁剪";
+            break;
+        case 3:
+            $name = "右上角裁剪";
+            break;
+        default:
+            # code...
+            break;
+    }
+    return $name;
+}
+
+function get_scale_type_name($id){
+    switch ($id) {
+        case 0:
+            $name = "不缩放";
+            break;
+        case 1:
+            $name = "缩放不填充";
+            break;
+        case 2:
+            $name = "缩放填充";
+            break;
+        case 3:
+            $name = "变形缩放";
+            break;
+        default:
+            # code...
+            break;
+    }
+    return $name;
+}
+
+
+
+</php>
+
+
+<!--接口列表-->
+<div class="pad_10">
+    <div class="J_tablelist table_list" data-acturi="{:U('setting/ajax_edit')}">
+        <table width="100%" cellspacing="0">
+            <thead>
+            <tr>
+                <th width="40"><input type="checkbox" name="checkall" class="J_checkall"></th>
+      			<th>附件名称</th>
+                <th>附件标示</th>
+                <th>最大上传大小（MB）</th>
+                <th>大小错误提示</th>
+                <th>允许的格式</th>
+                <th>裁剪的类型</th>
+                <th>裁剪的长宽</th>
+                <th>放缩的类型</th>
+                <th>放缩的长宽</th>
+                <th>上传后返回图</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <volist name="list" id="val">
+            <tr>
+                <td align="center"><input type="checkbox" class="J_checkitem" value="{$val.id}"></td>
+                <td align="center">{$val.name}</td>
+                <td align="center">{$val.typename}</td>
+                <td align="center">{$val.maxsize}</td>
+                <td align="center">{$val.maxsize_errorinfo}</td>
+                <td align="center">{$val.allowext}</td>
+                <td align="center">{$val.sub_type|get_sub_type_name}</td>
+                <td align="center">{$val.sub_width}*{$val.sub_height}</td>
+                <td align="center">{$val.scale_type|get_scale_type_name}</td>
+                <td align="center">{$val.scale_width}*{$val.scale_height}</td>
+                <td align="center">{$val.upload_return_type|get_upload_return_type_name}</td>
+                <td align="center">
+                    <a href="javascript:;" class="J_showdialog" data-uri="{:U('setting/uploadconfig_edit', array('id'=>$val['id']))}" data-title="{:L('edit')} - {$val.name} - 上传配置"  data-id="edit">{:L('edit')}</a> 
+                </td>
+            </tr>
+            </volist>
+            </tbody>
+        </table>
+    </div>
+    <div class="btn_wrap_fixed">
+        <div id="pages">{$page}</div>
+    </div>
+</div>
+</block>
