@@ -3,31 +3,31 @@
 <block name="body_main">
 
 <div class="pad_lr_10">
-	<form id="info_form" action="{:u('setting/saveSetting')}" method="post" enctype="multipart/form-data">
+	<form id="info_form" action="{:U('setting/saveSetting')}" method="post" enctype="multipart/form-data">
 	<table width="100%" class="table_form">
 		<tr>
             <th width="150">{:L('site_url')} :</th>
-            <td><input type="text" name="setting[site_url]" class="input-text" size="30" value="{:C('hzgxr_site_url')}">
+            <td><input type="text" name="setting[site_url]" class="" size="30" value="{:C('hzgxr_site_url')}">
 	    <span class="gray ml10">网站地址必须以http:// 开头 / 斜杠结尾</span>
 	    </td>
         </tr>
         <tr>
             <th width="150">{:L('site_name')} :</th>
-            <td><input type="text" name="setting[site_name]" class="input-text" size="30" value="{:C('hzgxr_site_name')}"></td>
+            <td><input type="text" name="setting[site_name]" class="" size="30" value="{:C('hzgxr_site_name')}"></td>
         </tr>
     
         <tr>
             <th>{:L('site_icp')} :</th>
-            <td><input type="text" name="setting[site_icp]" class="input-text" size="30" value="{:C('hzgxr_site_icp')}"></td>
+            <td><input type="text" name="setting[site_icp]" class="" size="30" value="{:C('hzgxr_site_icp')}"></td>
         </tr>
          <tr>
             <th>最低提现金额 :</th>
-            <td><input type="text" name="setting[min_cash_money]" class="input-text" size="30" value="{:C('hzgxr_min_cash_money')}"></td>
+            <td><input type="text" name="setting[min_cash_money]" class="" size="30" value="{:C('hzgxr_min_cash_money')}"></td>
         </tr>
         <tr>
             <th>帮助中心热搜 :</th>
             <td>
-                <input type="text" name="setting[help_hot_words]" class="input-text" size="60" value="{:C('hzgxr_help_hot_words')}"><span class="gray ml10">请以空格或逗号相隔</span>
+                <input type="text" name="setting[help_hot_words]" class="" size="60" value="{:C('hzgxr_help_hot_words')}"><span class="gray ml10">请以空格或逗号相隔</span>
             </td>
         </tr>
 
@@ -38,7 +38,7 @@
 
         <tr>
             <th>ADMIN_ACCESS :</th>
-            <td><input type="text" name="setting[admin_acess]" class="input-text" size="60" value="{:C('hzgxr_admin_acess')}"></td>
+            <td><input type="text" name="setting[admin_acess]" class="" size="60" value="{:C('hzgxr_admin_acess')}"></td>
         </tr>
         <tr>
             <th>留言是否需审核 :</th>

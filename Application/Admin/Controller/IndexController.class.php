@@ -54,7 +54,8 @@ class IndexController extends BackController {
 
     public function login(){
     	if(IS_POST){
-    		$res = D("AdminBase","HandleObject")->login();
+            $adminBaseHandleObject = $this->visitor->adminBaseHandleObject();
+            $res = $adminBaseHandleObject->login();
     		if($res['error']==0 && $res['id'] >0){
     			$this->success($res['info'], U('index/index'));
     		}else{
@@ -66,7 +67,8 @@ class IndexController extends BackController {
     }
 
     public function logout(){
-        $res = D("AdminBase","HandleObject")->logout();
+        $adminBaseHandleObject = $this->visitor->adminBaseHandleObject();
+        $res = $adminBaseHandleObject->logout();
         $this->success($res['info'], U('index/login'));
     }
 
@@ -87,5 +89,4 @@ class IndexController extends BackController {
         $Verify->length   = 4;
         $Verify->entry();
     }
-
 }

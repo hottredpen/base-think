@@ -42,9 +42,9 @@ class AdminMenuHandleObject {
         }
         $res = $menuModel->where(array("id"=>$id))->save();
         if($res){
-            return array("error"=>0,"info"=>"添加成功");
+            return array("error"=>0,"info"=>"修改成功");
         }else{
-            return array("error"=>1,"info"=>"添加失败");
+            return array("error"=>1,"info"=>"修改失败");
         }
     }
     /**
