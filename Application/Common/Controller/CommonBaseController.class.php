@@ -8,10 +8,11 @@ use Think\Controller;
 class CommonBaseController extends Controller {
 
     protected function _initialize() {
-        if($setting = F("WEB_SETTING")===false){
+        if(!F("WEB_SETTING")){
             $setting = D("Setting","Datamanager")->getDataWithPre_NoCache();
             F("WEB_SETTING",$setting);
         }
+        $setting = F("WEB_SETTING");
         C($setting);
     }
     

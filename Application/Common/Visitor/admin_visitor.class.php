@@ -21,5 +21,8 @@ class admin_visitor {
         return new \Common\HandleObject\AdminBaseHandleObject();
     }
 
+    public function SuperAdminBaseHandleObject(){
+        return new \Common\HandleObject\SuperAdminBaseHandleObject($this->info['id']);
+    }
 
 }

@@ -5,19 +5,20 @@ class SettingController extends BackController {
 
     public function _initialize() {
         parent::_initialize();
-        $this->_mod = D("Setting");
-		// $cate_data = D('ItemsCate')->cate_data_cache();
-  //       $this->assign('cate_data', $cate_data);
     }
 
     public function index() {
-        $type = I('type', 'index', 'trim'); 
         $this->display($type);
     }
 
     public function saveSetting(){
-        
-
+        $superAdminBaseHandleObject = $this->visitor->SuperAdminBaseHandleObject();
+        $res = $superAdminBaseHandleObject->saveSetting();
+        if($res['error']==0 && $res['info'] != ""){
+            $this->success($res['info'].",刷新缓存后生效",U('cache/index'));
+        }else{
+            $this->error($res['info']);
+        }
     }
 
     //上传附件配置
