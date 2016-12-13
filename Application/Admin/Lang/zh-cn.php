@@ -128,6 +128,29 @@ return array(
 		'closed_reason'      => '关闭说明',
 
 
+
+		'admin_add'                          => '添加管理员',
+		'admin_username'                     => '管理员帐号',
+		'employer_level_setting_name'        => '积分名称',
+		'ck_level_setting_name'              => '积分名称',
+		'admin_email'                        => '邮箱',
+		'lasttime'                           => '最后登录时间',
+		'lastip'                             => '最后登录IP',
+		'password'                           => '密码',
+		'cofirmpwd'                          => '确认密码',
+		'admininrole'                        => '所属分组',
+		'admin_name_exists'                  => '帐号已经被占用',
+		'employer_level_setting_name_exists' => '积分名称已经被占用',
+		'ck_level_setting_name_exists'       => '积分名称已经被占用',
+		'admin_username_empty'               => '帐号不能为空',
+		'employer_level_setting_name_empty'  => '帐号不能为空',
+		'ck_level_setting_name_empty'        => '帐号不能为空',
+		'between_6_to_20'                    => '应该为6-20位之间',
+		'passwords_not_match'                => '两次密码不一致',
+		'not_edit_password'                  => '不修改则留空',
+
+
+
  //    'PAY_METHOD_RATE_DESC' => '说明：顾客将支付订单总金额乘以此费率作为手续费；',
  //    'author'=>'插件作者',
  //    'version'=>'插件版本',

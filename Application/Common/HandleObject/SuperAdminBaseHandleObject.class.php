@@ -44,5 +44,17 @@ class SuperAdminBaseHandleObject {
             return array("error"=>1,"info"=>"保存失败");
         }
     }
+    public function addAdmin(){
+        $adminModel = D("Admin");
+        if (!$adminModel->field('username,password,repassword,role_id,email')->create($_POST,11)){
+            return array("error"=>1,"info"=>$adminModel->getError());
+        }
+        $res = $adminModel->add();
+        if($res){
+            return array("error"=>0,"info"=>"添加成功","id"=>$res);
+        }else{
+            return array("error"=>1,"info"=>"添加失败");
+        }
+    }
 
 }
