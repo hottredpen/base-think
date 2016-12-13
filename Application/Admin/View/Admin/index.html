@@ -30,8 +30,8 @@
                     <img data-tdtype="toggle" data-field="status" data-id="{$val.id}" data-value="{$val.status}" src="__STATIC__/images/admin/toggle_<if condition="$val.status eq 0">disabled<else/>enabled</if>.gif" />
                 </td>
                 <td align="center">
-                    <a href="javascript:;" class="J_showdialog" data-uri="{:U('admin/edit', array('id'=>$val['id']))}" data-title="{:L('edit')} - {$val.username}"  data-id="edit" data-width="450" data-height="210">{:L('edit')}</a> | 
-                    <a href="javascript:;" class="J_confirmurl" data-uri="{:U('admin/delete', array('id'=>$val['id']))}" data-msg="{:sprintf(L('confirm_delete_one'),$val['username'])}">{:L('delete')}</a>
+                    <a href="javascript:;" class="J_showdialog" data-uri="{:U('admin/getEditForm', array('id'=>$val['id']))}" data-title="{:L('edit')} - {$val.username}"  data-id="edit" data-width="450" data-height="210">{:L('edit')}</a> | 
+                    <a href="javascript:;" class="J_confirmurl" data-uri="{:U('admin/deleteAdmin')}" data-msg="{:sprintf(L('confirm_delete_one'),$val['username'])}" data-id="{$val['id']}">{:L('delete')}</a>
                 </td>
             </tr>
             </volist>

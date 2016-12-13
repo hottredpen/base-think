@@ -78,4 +78,30 @@ class SuperAdminBaseHandleObject {
         }
     }
 
+    private function saveAdmin(){
+        $adminModel = D("Admin");
+        if (!$adminModel->field('id,username,password,repassword,role_id,email')->create($_POST,12)){
+            return array("error"=>1,"info"=>$adminModel->getError());
+        }
+        $res = $adminModel->save();
+        if($res){
+            return array("error"=>0,"info"=>"修改成功");
+        }else{
+            return array("error"=>1,"info"=>"修改失败");
+        }
+    }
+
+    private function deleteAdmin(){
+        $adminModel = D("Admin");
+        if (!$adminModel->field('id')->create($_POST,13)){
+            return array("error"=>1,"info"=>$adminModel->getError());
+        }
+        $res = $adminModel->where(array("id"=>$_POST['id']))->delete();
+        if($res){
+            return array("error"=>0,"info"=>"删除成功");
+        }else{
+            return array("error"=>1,"info"=>"删除失败");
+        }
+    }
+
 }
