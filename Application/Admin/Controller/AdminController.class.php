@@ -35,7 +35,33 @@ class AdminController extends BackController
             $this->cpk_error($res['info']);
         }
     }
-
+    public function getEditForm(){
+        if (IS_AJAX) {
+            $response = $this->fetch("edit");
+            $this->assign("menuid",$this->menuid);
+            $this->ajaxReturn(1, '', $response);
+        } else {
+            $this->display();
+        }
+    }
+    public function saveAdmin(){
+        $id  = I("id",0,"intval");
+        $res = D("AdminMenu","HandleObject")->saveMenu($id);
+        if($res['error'] == 0 && $res['info'] != ""){
+            $this->cpk_success($res['info']);
+        }else{
+            $this->cpk_error($res['info']);
+        }
+    }
+    public function deleteAdmin(){
+        $id = I("id",0,"intval");
+        $res = D("AdminMenu","HandleObject")->deleteMenu($id);
+        if($res['error'] == 0 && $res['info'] != ""){
+            $this->cpk_success($res['info']);
+        }else{
+            $this->cpk_error($res['info']);
+        }
+    }
 
 
 

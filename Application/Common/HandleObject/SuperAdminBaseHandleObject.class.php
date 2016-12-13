@@ -10,17 +10,38 @@ class SuperAdminBaseHandleObject {
     public function __construct($uid) {
     	if((int)$uid>0){
     		$this->uid = $uid;
-    	}else{
-    		$return = array();
-    		$return['error']  = 1;
-    		$return['info']   = "请登录之后操作";
-    		return $return;
     	}
+    }
+    /**
+     * 做登录或者权限检测
+     * 对外方法public 改成private 就可以进行权限检测
+     * 
+     */
+    public function __call($method, $args) {
+        if((int)$this->uid == 0){
+            return array('error'=>1,'info'=>'请登录之后操作');
+        }
+        // 检查是否存在方法$method
+        if (method_exists($this, $method)) {
+            $before_method = 'before_' + $method;
+            // 检查是否存在方法$before_method
+            if (method_exists($this, $before_method)) {
+                // 调用$before_method，检查其返回值，决定是否跳过函数执行
+                if (call_user_func_array(array($this, $before_method), $args)) {
+                    return call_user_func_array(array($this, $method), $args);
+                }
+            } else {
+                // $before_method不存在，直接执行函数
+                return call_user_func_array(array($this, $method), $args);
+            }
+        } else {
+            return array('error'=>1,'info'=>'不存在方法 ' . $method);
+        }
     }
     /**
      * 登录
      */
-    public function saveSetting(){
+    private function saveSetting(){
         $settingModel = D("Setting");
 
         if (!$settingModel->field('setting')->create($_POST,11)){
@@ -44,7 +65,7 @@ class SuperAdminBaseHandleObject {
             return array("error"=>1,"info"=>"保存失败");
         }
     }
-    public function addAdmin(){
+    private function addAdmin(){
         $adminModel = D("Admin");
         if (!$adminModel->field('username,password,repassword,role_id,email')->create($_POST,11)){
             return array("error"=>1,"info"=>$adminModel->getError());
