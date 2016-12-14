@@ -17,22 +17,14 @@ class IndexController extends FrontController {
 
     /* 文档模型频道页 */
 	public function index(){
-    	$pjax = I("_pjax","","trim");
-    	if($pjax != ""){
-    		echo "<h1>index</h1><h1>index</h1><h1>index</h1><h1>index</h1><h1>index</h1><h1>index</h1><h1>index</h1>";
-    	}else{
-    		$this->display();
-    	}
-
+        $this->layoutDisplay("Index:index");
 	}
 
     public function aaaa(){
-    	$pjax = I("_pjax","","trim");
-    	if($pjax != ""){
-    		echo "<h1>aaaaa</h1><h1>aaaaa</h1><h1>aaaaa</h1><h1>aaaaa</h1><h1>aaaaa</h1><h1>aaaaa</h1><h1>aaaaa</h1>";
-    	}else{
-    		$this->display();
-    	}
-        
+        $this->layoutDisplay("Index:aaaa");
+    }
+
+    public function tree(){
+        $this->layoutDisplay("Index:tree");
     }
 }

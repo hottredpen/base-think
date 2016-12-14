@@ -30,4 +30,32 @@ class FrontController extends CommonBaseController {
             S("userStatus_".$info['id'], null);
         }
     }
+
+    protected function layoutDisplay($templateFile){
+        G('viewStartTime');
+        // 视图开始标签
+        \Think\Hook::listen('view_begin',$templateFile);
+        if(I("_pjax","","trim") != ""){
+            $layoutcontent = $this->fetch($templateFile);
+        }else{
+            // 解析并获取模板内容
+            $content = $this->fetch($templateFile);
+            $this->assign("fetch_html",$content);
+            $layoutcontent = $this->fetch("Public:layout");
+        }
+        // 输出模板内容
+        $this->render($layoutcontent);
+        // 视图结束标签
+        \Think\Hook::listen('view_end');
+    }
+
+    private function render($content,$charset='',$contentType=''){
+        if(empty($charset))  $charset = C('DEFAULT_CHARSET');
+        if(empty($contentType)) $contentType = C('TMPL_CONTENT_TYPE');
+        // 网页字符编码
+        header('Content-Type:'.$contentType.'; charset='.$charset);
+        header('Cache-control: '.C('HTTP_CACHE_CONTROL'));  // 页面缓存控制
+        // 输出模板文件
+        echo $content;
+    }
 }
