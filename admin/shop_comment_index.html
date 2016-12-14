@@ -1,0 +1,91 @@
+<section class="content-header">
+    <h1>
+        商城管理
+        <small></small>
+    </h1>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <!-- /.col -->
+        <div class="col-md-12">
+            <div class="box box-danger">
+                <div class="box-header with-border">
+                    <h3 class="box-title">评论管理</h3>
+                    <!-- /.box-tools -->
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body no-padding">
+                    <div class="table-responsive" style="overflow-x: visible;">
+                        <table class="table table-bordered table-hover">
+                            <tbody>
+                            <tr>
+                                <th class="hidden-xs">
+                                    <label><input onchange="checkAll()" type="checkbox" value=""></label>
+                                </th>
+                                <th>ID</th>
+                                <th>商品名称</th>
+                                <th>用户名</th>
+                                <th>评论内容</th>
+                                <th>时间</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+
+                            {{#each commentlist}}
+                                <tr>
+                                    <td class="hidden-xs">
+                                        <label><input name="checkbox" class="check" type="checkbox" value="{{id}}"></label>
+                                    </td>
+                                    <td>{{id}}</td>
+                                    <td>{{product.name}}</td>
+                                    <td>{{user.username}}</td>
+                                    <td>{{name}}</td>
+                                    <td>{{moment created_at 'YYYY-MM-DD HH:mm:ss'}}</td>
+                                    <td>
+                                        {{#eq status 1}}
+                                        <span class="label label-success">开启</span>
+                                        {{else}}
+                                        <span class="label label-default">关闭</span>
+                                        {{/eq}}                                        
+                                    </td>
+                                    <td class="table-action">
+                                    {{#eq status 1}}
+                                    <a href="/admin/shop/comment/close/{{id}}">关闭</a>
+                                    {{else}}    
+                                     <a href="/admin/shop/comment/open/{{id}}">开启</a>   
+                                    {{/eq}}    
+                                    </td>
+                                </tr>
+                            {{/each}}
+                            </tbody>
+                        </table>
+                        <div class="box-footer no-padding">
+                            <div class="mailbox-controls">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-danger "
+                                            onclick="batchUrl('/admin/shop/comment/update?status=1')">全部开启
+                                    </button>
+                                </div>                              
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-danger "
+                                            onclick="batchUrl('/admin/shop/comment/update?status=0')">全部关闭
+                                    </button>                                  
+                                </div>    
+                                <div class="pull-right">
+                                    {{{page}}}
+                                    <!-- /.btn-group -->
+                                </div>
+                                <!-- /.pull-right -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.mail-box-messages -->
+                </div>
+            </div>
+            <!-- /. box -->
+        </div>
+        <!-- /.col -->
+    </div>
+</section>

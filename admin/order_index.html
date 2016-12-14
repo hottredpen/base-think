@@ -1,0 +1,309 @@
+<section class="content-header">
+    <h1>
+        订单管理
+        <small></small>
+    </h1>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <h3 class="box-title">订单搜索</h3>
+                </div>
+                <!-- form start -->
+                <form class="form-horizontal" action="search" method="post">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label">订单ID</label>
+
+                            <div class="col-sm-3">
+                                <input class="form-control" name="id" placeholder="" value="{{postodr.id}}"
+                                       type="text">
+                            </div>
+
+                            <label class="col-sm-1 control-label">订单编号</label>
+
+                            <div class="col-sm-3">
+                                <input class="form-control" name="orderid" placeholder="" value="{{postodr.orderid}}"
+                                       type="text">
+                            </div>
+
+                            <label class="col-sm-1 control-label">用户ID</label>
+
+                            <div class="col-sm-3">
+                                <input class="form-control" name="user_id" placeholder="" value="{{#if postodr.user_id}}{{postodr.user_id}}{{/if}}"
+                                       type="text">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label">支付方式</label>
+
+                            <div class="col-sm-3">
+                                <select name="payment" class="form-control">
+                                    <option value="-10">不选择支付方式</option>
+                                    <option value="0">账户支付</option>
+                                    <option value="1">微信支付</option>
+                                    <option value="2">支付宝支付</option>
+                                    <option value="3">货到付款</option>
+                                </select>
+                            </div>
+
+                            <label class="col-sm-1 control-label">支付状态</label>
+
+                            <div class="col-sm-3">
+                                <select name="pay_status" class="form-control">
+                                    <option value="-10">不选择支付状态</option>
+                                    <option value="0">未支付</option>
+                                    <option value="1">已支付</option>
+                                </select>
+                            </div>
+
+                            <label class="col-sm-1 control-label">订单状态</label>
+
+                            <div class="col-sm-3">
+                                <select name="status" class="form-control">
+                                    <option value="-10">不选择订单状态</option>
+                                    <option value="0">未处理</option>
+                                    <option value="1">已发货</option>
+                                    <option value="2">已完成</option>
+                                    <option value="-1">已取消</option>
+                                    <option value="-2">退货中</option>
+                                    <option value="-3">已退货</option>
+                                    <option value="-4">申请退货</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label">商品</label>
+
+                            <div class="col-sm-3">
+                                <select name="product_id" class="form-control">
+                                    <option value="-10">不选择商品</option>
+                                    {{#each product}}
+                                        <option value="{{id}}">{{name}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+
+                            <label class="col-sm-1 control-label">时间范围</label>
+
+                            <div class="col-sm-7">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-clock-o"></i>
+                                    </div>
+                                    <input type="text" class="form-control pull-right" name="timeRange"
+                                           id="reservationtime" value="{{postodr.timeRange}}">
+                                </div>
+                            </div>
+                            <!-- /.input group -->
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+
+                    <div class="box-footer">
+                        <div class="col-sm-2">
+                            <button type="submit" class="btn btn-block btn-danger">开始搜索</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- /.box -->
+        </div>
+        <!--/.col (right) -->
+    </div>
+
+    <div class="row">
+        <!-- /.col -->
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">订单管理</h3>
+                    <!-- /.box-tools -->
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body no-padding">
+                    <div class="mailbox-controls">
+                        <div class="btn-group">
+                            <a href="/admin/export/excel/3"
+                               target="_blank" class="btn btn-danger">
+                                导出全部订单
+                            </a>
+                        </div>
+                        <!-- /.btn-group -->
+                    </div>
+                    <div class="table-responsive" style="overflow-x: visible;">
+                        <table class="table table-bordered table-hover">
+                            <tbody>
+                            <tr>
+                                <th class="hidden-xs">
+                                    <label><input onchange="checkAll()" type="checkbox" value=""></label>
+                                </th>
+                                <th>ID</th>
+                                <th>订单编号</th>
+                                <th>联系人</th>
+                                <th>地址</th>
+                                <th>价格</th>
+                                <th>优惠</th>
+                                <th>支付方式</th>
+                                <th>支付状态</th>
+                                <th>订单状态</th>
+                                <th>订单详情</th>
+                                <th>备注</th>
+                                <th>时间</th>
+                            </tr>
+                            {{#each order}}
+                                <tr>
+                                    <td class="hidden-xs">
+                                        <label>
+                                            <input name="checkbox" class="check" type="checkbox" value="{{id}}">
+                                        </label>
+                                    </td>
+                                    <td>
+                                        {{id}}
+                                    </td>
+                                    <td>
+                                        {{orderid}}
+                                    </td>
+                                    <td>
+                                        {{#each contact}}
+                                        <div>联系人:<span class="badge"
+                                                       style="margin-left: 3px;">{{name}}</span></div>
+                                        <div>手机号:<span class="badge"
+                                                       style="margin-left: 3px;">{{phone}}</span></div>
+                                        {{/each}}
+                                    </td>
+                                    <td style="max-width: 200px;overflow: hidden;">
+                                        {{#each contact}}
+                                        <div>省:<span class="badge"
+                                                     style="margin-left: 3px;">{{province}}</span></div>
+                                        <div>市:<span class="badge"
+                                                     style="margin-left: 3px;">{{city}}</span></div>
+                                        <div>区:<span class="badge"
+                                                     style="margin-left: 3px;">{{district}}</span></div>
+                                        <div>地址:<span class="badge"
+                                                      style="margin-left: 3px;">{{address}}</span></div>
+                                        {{/each}}
+                                    </td>
+                                    <td class="hidden-xs">
+                                        {{totalprice}}元
+                                    </td>
+                                    <td class="hidden-xs">
+                                        {{discount}}
+                                    </td>
+                                    <td class="hidden-xs">
+                                        {{#eq payment '0'}}账户余额
+                                            {{else}}{{#eq payment '1'}}微信支付
+                                                {{else}}{{#eq payment '2'}}支付宝
+                                                    {{else}}货到付款
+                                                {{/eq}}
+                                            {{/eq}}
+                                        {{/eq}}
+                                    </td>
+                                    <td class="hidden-xs">
+                                        {{#eq pay_status 1}}已支付{{else}}<font color="red">未支付</font>{{/eq}}
+                                    </td>
+                                    <td class="hidden-xs">
+                                        {{#eq status -1}}已取消
+                                            {{else}}{{#eq status 0}}<font color="red">未处理</font>
+                                                {{else}}{{#eq status 1}}<font color="blue">已发货</font>
+                                                    {{else}}{{#eq status -2}}<font color="blue">已退货</font>
+                                                        {{else}}已完成
+                                                    {{/eq}}
+                                                {{/eq}}
+                                            {{/eq}}
+                                        {{/eq}}
+                                    </td>
+                                    <td class="hidden-xs">
+                                        {{#each detail}}
+                                            <div>{{product_name}}
+                                                <span class="badge" style="margin-left: 3px;">{{price}} 元 * {{num}}</span>
+                                            </div>
+                                        {{/each}}
+                                    </td>
+                                    <td class="hidden-xs">
+                                        {{remark}}
+                                    </td>
+                                    <td class="hidden-xs">
+                                        {{moment created_at 'YYYY-MM-DD HH:mm:ss'}}
+                                    </td>
+                                </tr>
+                            {{/each}}
+
+                            </tbody>
+                        </table>
+
+                        <div class="box-footer no-padding">
+                            <div class="mailbox-controls">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-danger "
+                                            onclick="batchUrl('update?status=1')">
+                                        发货
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-danger "
+                                            onclick="batchUrl('update?pay_status=1')">
+                                        已支付
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-danger "
+                                            onclick="batchUrl('update?status=-1')">
+                                        取消
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-danger "
+                                            onclick="batchUrl('update?status=2')">
+                                        已完成
+                                    </button>
+                                </div>
+                                <!--<div class="btn-group">-->
+                                <!--    <button type="button" class="btn btn-danger "-->
+                                <!--            onclick="batchUrl('update?status=-2')">-->
+                                <!--        已退货-->
+                                <!--    </button>-->
+                                <!--</div>-->
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-danger "
+                                            onclick="batchUrl('/admin/export/excel/3?', false)">
+                                        导出订单
+                                    </button>
+                                </div>
+                                <!-- /.btn-group -->
+                                <div class="btn-group pull-right">
+                                    {{{page}}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.mail-box-messages -->
+                </div>
+            </div>
+            <!-- /. box -->
+        </div>
+        <!-- /.col -->
+    </div>
+</section>
+<script type="text/javascript">
+    $(function () {
+        $('#reservationtime').daterangepicker({
+            timePicker: true,
+            timePickerIncrement: 30,
+            format: 'YYYY-MM-DD h:mm:ss',
+            separator: ' --- ',
+        });
+
+        if ("{{postodr.payment}}" != '') $('select[name="payment"]').val('{{postodr.payment}}');
+        if ("{{postodr.pay_status}}" != '') $('select[name="pay_status"]').val('{{postodr.pay_status}}');
+        if ("{{postodr.status}}" != '') $('select[name="status"]').val('{{postodr.status}}');
+        if ("{{postodr.product_id}}" != '') $('select[name="product_id"]').val('{{postodr.product_id}}');
+    });
+</script>

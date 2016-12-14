@@ -1,0 +1,91 @@
+<section class="content-header">
+    <h1>
+        商城管理
+        <small></small>
+    </h1>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <!-- /.col -->
+        <div class="col-md-12">
+            <div class="box box-danger">
+                <div class="box-header with-border">
+                    <h3 class="box-title">标签管理</h3>
+                    <!-- /.box-tools -->
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body no-padding">
+                    <div class="mailbox-controls">
+                        <div class="btn-group">
+                            <a href="addlabel" class="btn btn-danger ">
+                                新增标签
+                            </a>
+                        </div>
+                        <!-- /.btn-group -->
+                    </div>
+                    <div class="table-responsive" style="overflow-x: visible;">
+                        <table class="table table-bordered table-hover">
+                            <tbody>
+                            <tr>
+                                <th class="hidden-xs">
+                                    <label><input onchange="checkAll()" type="checkbox" value=""></label>
+                                </th>
+                                <th>ID</th>
+                                <th>名称</th>
+                                <th>介绍</th>
+                                <th>备注</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+
+                            {{#each label}}
+                                <tr>
+                                    <td class="hidden-xs">
+                                        <label><input name="checkbox" class="check" type="checkbox" value="{{id}}"></label>
+                                    </td>
+                                    <td>{{id}}</td>
+                                    <td>{{name}}</td>
+                                    <td>{{subname}}</td>
+                                    <td>{{remark}}</td>
+                                    <td>
+                                        {{#eq status 0}}<span class="label label-default">关闭</span>
+                                        {{else}}<span class="label label-success">开启</span>
+                                        {{/eq}}
+                                    </td>
+                                    <td class="table-action">
+                                        <a href="modLabel?id={{id}}">编辑</a>
+                                        {{#eq status 1}}<a href="switchlabel?id={{id}}&status=0">关闭</a>{{/eq}}
+                                        {{#eq status 0}}<a href="switchlabel?id={{id}}&status=1">开启</a>{{/eq}}
+                                    </td>
+                                </tr>
+                            {{/each}}
+                            </tbody>
+                        </table>
+                        <div class="box-footer no-padding">
+                            <div class="mailbox-controls">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-danger "
+                                            onclick="batchUrl('switchlabel?status=1')">开启
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-danger "
+                                            onclick="batchUrl('switchlabel?status=0')">关闭
+                                    </button>
+                                </div>
+                                <div class="btn-group pull-right">
+                                    {{{page}}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.mail-box-messages -->
+                </div>
+            </div>
+            <!-- /. box -->
+        </div>
+        <!-- /.col -->
+    </div>
+</section>
