@@ -27,4 +27,27 @@ class IndexController extends FrontController {
     public function tree(){
         $this->layoutDisplay("Index:tree");
     }
+
+    public function mysqltree(){
+
+        //$data = M("treetest")->select();
+
+        $ddd = '[{"id":1},{"id":2,"children":[{"id":4},{"id":3},{"id":5,"children":[{"id":6},{"id":8},{"id":7}]},{"id":9},{"id":10}]},{"id":12},{"id":11}]';
+
+        $ddddddd = json_decode($ddd, true);
+        $addpid  = tree_add_pid($ddddddd,0,'children','id');
+        $dddd    = tree_to_list($addpid,'children','index');
+        $out     = list_to_tree($dddd);
+        $this->assign("treetestlist",$out);
+        $this->layoutDisplay("Index:mysqltree");
+    }
+    public function changetree(){
+        $data = I("data","","trim");
+        $dddd = json_decode($data,true);
+        dump($dddd);
+
+
+        IS_AJAX && $this->ajaxReturn(1,"2",$data);
+    }
+
 }
