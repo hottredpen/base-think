@@ -42,12 +42,13 @@ class IndexController extends FrontController {
         $this->layoutDisplay("Index:mysqltree");
     }
     public function changetree(){
-        $data = I("data","","trim");
-        $dddd = json_decode($data,true);
-        dump($dddd);
-
-
-        IS_AJAX && $this->ajaxReturn(1,"2",$data);
+        $baseHandleObject = $this->visitor->BaseHandleObject();
+        $res = $baseHandleObject->changeTree();
+        if($res['error']==0 && $res['info'] != ""){
+            $this->cpk_success($res['info']);
+        }else{
+            $this->cpk_error($res['info']);
+        }
     }
 
 }
