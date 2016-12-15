@@ -13,7 +13,7 @@ use Think\Model;
 /**
  * 分类模型
  */
-class TreeOrderModel extends Model{
+class TreeModel extends Model{
 
     const INFO_ADD      = 11; // 初始化添加
     const INFO_SAVE     = 12; // 修改
@@ -46,6 +46,8 @@ class TreeOrderModel extends Model{
 
     protected function is_treedata_pass($jsontreedata){
         $treedata = json_decode($jsontreedata,true);
+        $addpid   = tree_add_pid($treedata,0,'children','id'); 
+        $treedata = tree_to_list($addpid,'children','index'); // js里的是children,存数据库里时改为list
         if(count($treedata) > 0){
             $this->treeData = $treedata;
             return true;

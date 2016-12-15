@@ -13,7 +13,7 @@ use Think\Model;
 /**
  * 分类模型
  */
-class TreeTestModel extends Model{
+class TreeDataModel extends Model{
 
     const INFO_ADD      = 10; // 
 

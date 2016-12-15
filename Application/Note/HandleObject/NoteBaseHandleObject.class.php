@@ -48,11 +48,11 @@ class NoteBaseHandleObject {
      * 
      */
     private function changeTree(){
-        $treeOrderModel = D("TreeOrder");
-        if (!$treeOrderModel->field('jsontreedata')->create($_POST,12)){
-            return array("error"=>1,"info"=>$treeOrderModel->getError());
+        $treeModel = D("Tree");
+        if (!$treeModel->field('jsontreedata')->create($_POST,12)){
+            return array("error"=>1,"info"=>$treeModel->getError());
         }
-        $res = $treeOrderModel->where(array("user_id"=>$this->uid))->save();
+        $res = $treeModel->where(array("user_id"=>$this->uid))->save();
         if($res){
             return array("error"=>0,"info"=>"修改成功");
         }else{

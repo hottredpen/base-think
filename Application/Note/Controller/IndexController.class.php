@@ -29,16 +29,16 @@ class IndexController extends FrontController {
     }
 
     public function mysqltree(){
+        $treeOrderData = M("Tree")->where(array('user_id'=>1))->getField("treedata"); 
+        $treeOrderData = unserialize($treeOrderData);
+        foreach ($treeOrderData as $key => $value) {
+            $treeOrderData[$key]['data'] = M('TreeData')->where(array("id"=>$value['id']))->find();
+        }
 
-        //$data = M("treetest")->select();
 
-        $ddd = '[{"id":1},{"id":2,"children":[{"id":4},{"id":3},{"id":5,"children":[{"id":6},{"id":8},{"id":7}]},{"id":9},{"id":10}]},{"id":12},{"id":11}]';
 
-        $ddddddd = json_decode($ddd, true);
-        $addpid  = tree_add_pid($ddddddd,0,'children','id');
-        $dddd    = tree_to_list($addpid,'children','index');
-        $out     = list_to_tree($dddd);
-        $this->assign("treetestlist",$out);
+        $treetestlist  = list_to_tree($treeOrderData);
+        $this->assign("treetestlist",$treetestlist);
         $this->layoutDisplay("Index:mysqltree");
     }
     public function changetree(){
