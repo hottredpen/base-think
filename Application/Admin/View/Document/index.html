@@ -36,7 +36,7 @@
     </table>
     </form>
 
-    <div class="J_tablelist table_list" data-acturi="{:U('article/ajax_edit')}">
+    <div class="J_tablelist table_list" data-acturi="{:U('document/ajax_edit')}">
     <table width="100%" cellspacing="0">
         <thead>
             <tr>
@@ -65,7 +65,7 @@
 				<php>}else{</php>
 				<td align="left"><a href="{:U('/home/'.$cate_module[$val['cate_id']].'/'.$cate_enname[$val['cate_id']],array('id'=>$val['id']))}" target="_blank">{$val.title}</a><notempty name="val['img']"><span class="attachment_icon J_attachment_icon" file-type="image" file-rel="{$img_dir}{$val.img}"><img src="__STATIC__/images/filetype/image_s.gif" /></span></notempty></td>
 				<php>}</php>
-				<td align="center"><b>{$cate_list[$val['cate_id']]}</b></td>
+				<td align="center"><b>{$val['category_title']}</b></td>
 				<td align="center"><b><span data-tdtype="edit" data-field="author" data-id="{$val.id}" class="tdedit"  >{$val['author']}</span></b></td>
 				<td align="center"><b>{$val['hits']}</b></td>
 
@@ -74,7 +74,7 @@
                 <td align="center">{$val.add_time}</td>
                 <td align="center"><span data-tdtype="edit" data-field="ordid" data-id="{$val.id}" class="tdedit">{$val.ordid}</span></td>
                 <td align="center"><img data-tdtype="toggle" data-id="{$val.id}" data-field="status" data-value="{$val.status}" src="__STATIC__/images/admin/toggle_<if condition="$val.status eq 0">disabled<else/>enabled</if>.gif" /></td>
-                <td align="center"><a href="{:u('article/edit', array('id'=>$val['id'], 'menuid'=>$menuid))}" >{:L('edit')}</a> | <a href="javascript:void(0);" class="J_confirmurl" data-acttype="ajax" data-uri="{:u('article/delete', array('id'=>$val['id']))}" data-msg="{:sprintf(L('confirm_delete_one'),$val['title'])}">{:L('delete')}</a></td>
+                <td align="center"><a href="{:u('document/edit', array('id'=>$val['id'], 'menuid'=>$menuid))}" >{:L('edit')}</a> | <a href="javascript:void(0);" class="J_confirmurl" data-acttype="ajax" data-uri="{:u('document/deletedocument', array('id'=>$val['id']))}" data-msg="{:sprintf(L('confirm_delete_one'),$val['title'])}">{:L('delete')}</a></td>
             </tr>
             </volist>
         </tbody>
@@ -82,7 +82,7 @@
 
     <div class="btn_wrap_fixed">
         <label class="select_all"><input type="checkbox" name="checkall" class="J_checkall">{:L('select_all')}/{:L('cancel')}</label>
-        <input type="button" class="btn" data-tdtype="batch_action" data-acttype="ajax" data-uri="{:U('article/delete')}" data-name="id" data-msg="{:L('confirm_delete')}" value="{:L('delete')}" />
+        <input type="button" class="btn" data-tdtype="batch_action" data-acttype="ajax" data-uri="{:U('document/deletedocument')}" data-name="id" data-msg="{:L('confirm_delete')}" value="{:L('delete')}" />
         <div id="pages">{$page}</div>
     </div>
     </div>

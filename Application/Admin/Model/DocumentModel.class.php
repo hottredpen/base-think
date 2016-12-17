@@ -8,7 +8,7 @@ class DocumentModel extends Model{
 
     //字段衍射
     protected $_map = array(
-                            
+                                'pid' => 'category_id', // 
                         );
     //修改插入后自动完成
     protected $_auto = array(
@@ -19,9 +19,20 @@ class DocumentModel extends Model{
 
     protected $_validate = array(
         // 添加
+        array('category_id', 'is_category_id_pass', '请选择文章分类', self::MUST_VALIDATE,'callback',self::INFO_ADD),
+        array('title', 'is_notempty_pass', '标题不能为空', self::MUST_VALIDATE,'function',self::INFO_ADD),
         array('title', 'is_filter_pass', '标题不能包含特殊符号', self::MUST_VALIDATE,'function',self::INFO_ADD),
 
 
     );
+
+    protected function is_category_id_pass($category_id){
+        // todo 只能是最后一级
+        if($category_id > 0){
+            return true;
+        }
+        return false;
+    }
+
 
 }

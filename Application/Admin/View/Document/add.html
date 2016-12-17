@@ -1,10 +1,6 @@
 <form id="j_artdialog_form" action="{:U('Document/addDocument')}" method="post" enctype="multipart/form-data">
 <div class="pad_lr_10">
 	<div class="col_tab">
-		<ul class="J_tabs tab_but cu_li">
-			<li class="current">{:L('article_basic')}</li>
-			<li>{:L('article_seo')}</li>
-		</ul>
 		<div class="J_panes">
 			<div class="content_list pad_10">
 				<table width="100%" cellspacing="0" class="table_form">
@@ -24,10 +20,6 @@
 		                </td>
 					</tr>
 		            <tr>
-						<th>{:L('author')} :</th>
-						<td><input type="text" name="author" id="author" class="" size="20" value="{$author}"></td>
-					</tr>
-		            <tr>
 						<th>详细内容 :</th>
 		                <td>
 
@@ -42,17 +34,10 @@
 					<tr>
 						<th>{:L('publish')} :</th>
 		 				<td>
-		                	<label><input type="radio" name="status" class="radio_style" value="1"> {:L('yes')} </label>&nbsp;&nbsp;
-							<label><input type="radio" name="status" class="radio_style" value="0" checked="checked"> {:L('no')}</label>
+		                	<label><input type="radio" name="display" class="radio_style" value="1"> {:L('yes')} </label>&nbsp;&nbsp;
+							<label><input type="radio" name="display" class="radio_style" value="0" checked="checked"> {:L('no')}</label>
 						</td>
 					</tr>
-					<tr>
-						<th>是否推荐到左侧 :</th>
-						<td>
-							<label><input type="radio" name="recommend" class="radio_style" value="1"  > {:L('yes')}</label>&nbsp;&nbsp;
-							<label><input type="radio" name="recommend" class="radio_style" value="0"  checked="checked"> {:L('no')}</label>
-						</td>
-					</tr>					
 				</table>
 			</div>
 			<div class="content_list pad_10 hidden">
@@ -68,7 +53,6 @@
 				</table>
 			</div>
         </div>
-		<div class="mt10"><input type="submit" value="{:L('submit')}" id="dosubmit" name="dosubmit" class="smt mr10" style="margin:0 0 10px 100px;"><br /><br /><br /></div>
 	</div>
 </div>
 </form>

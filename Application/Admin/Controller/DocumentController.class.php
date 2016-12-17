@@ -25,7 +25,7 @@ class DocumentController extends BackController
             $r['selected'] = $r['id'] == $pid ? 'selected' : '';
             $array[] = $r;
         }
-        $str  = "<option value='\$id' \$selected>\$spacer \$name</option>";
+        $str  = "<option value='\$id' \$selected>\$spacer \$title</option>";
         $tree->init($array);
         $select_menus = $tree->get_tree(0, $str);
         $this->assign('select_menus', $select_menus);
@@ -49,20 +49,16 @@ class DocumentController extends BackController
             $this->cpk_error($res['info']);
         }
     }
-    // public function getEditForm(){
-    //     if (IS_AJAX) {
-    //         $id   = I("id",0,"intval");
-    //         $info = M("Admin")->where(array("id"=>$id))->find();
-    //         $this->assign("info",$info);
-    //         $role_list = M('AdminRole')->where(array("status"=>1))->select();
-    //         $this->assign('role_list', $role_list);
-    //         $response = $this->fetch("edit");
-    //         $this->assign("menuid",$this->menuid);
-    //         $this->ajaxReturn(1, '', $response);
-    //     } else {
-    //         $this->display();
-    //     }
-    // }
+    public function getEditForm(){
+        if (IS_AJAX) {
+            $id   = I("id",0,"intval");
+            $response = $this->fetch("edit");
+            $this->assign("menuid",$this->menuid);
+            $this->ajaxReturn(1, '', $response);
+        } else {
+            $this->display();
+        }
+    }
     // public function saveAdmin(){
     //     $id  = I("id",0,"intval");
     //     $superAdminBaseHandleObject = $this->visitor->SuperAdminBaseHandleObject();
@@ -73,16 +69,15 @@ class DocumentController extends BackController
     //         $this->cpk_error($res['info']);
     //     }
     // }
-    // public function deleteAdmin(){
-    //     $id  = I("id",0,"intval");
-    //     $superAdminBaseHandleObject = $this->visitor->SuperAdminBaseHandleObject();
-    //     $res = $superAdminBaseHandleObject->deleteAdmin($id);
-    //     if($res['error'] == 0 && $res['info'] != ""){
-    //         $this->cpk_success($res['info']);
-    //     }else{
-    //         $this->cpk_error($res['info']);
-    //     }
-    // }
+    public function deleteDocument($id){
+        $adminBaseHandleObject = $this->visitor->AdminBaseHandleObject();
+        $res = $adminBaseHandleObject->deleteDocument($id);
+        if($res['error'] == 0 && $res['info'] != ""){
+            $this->cpk_success($res['info']);
+        }else{
+            $this->cpk_error($res['info']);
+        }
+    }
     public function _before_index() {
         $big_menu = array(
             'title'  => '添加文章',

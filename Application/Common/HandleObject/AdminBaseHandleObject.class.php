@@ -50,7 +50,7 @@ class AdminBaseHandleObject {
     public function addDocument(){
         $documentModel       = D('Document');
         $documentArtcleModel = D('DocumentArticle');
-        if (!$documentModel->field('title')->create($_POST,11)){
+        if (!$documentModel->field('title,category_id,display')->create($_POST,11)){
             return array("error"=>1,"info"=>$documentModel->getError());
         }
         $res = $documentModel->add();
@@ -63,6 +63,17 @@ class AdminBaseHandleObject {
             return array("error"=>0,"info"=>"添加成功",'id'=>$res);
         }else{
             return array("error"=>1,"info"=>"添加失败");
+        }
+    }
+
+    public function deleteDocument($id){
+        // @todo
+        $res = M("Document")->where(array("id"=>$id))->delete();
+        $res_article = M("DocumentArticle")->where(array("id"=>$id))->delete();
+        if($res){
+            return array("error"=>0,"info"=>"删除成功");
+        }else{
+            return array("error"=>1,"info"=>"删除失败".$id);
         }
     }
 
