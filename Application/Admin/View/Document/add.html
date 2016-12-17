@@ -1,0 +1,100 @@
+<form id="j_artdialog_form" action="{:U('Document/addDocument')}" method="post" enctype="multipart/form-data">
+<div class="pad_lr_10">
+	<div class="col_tab">
+		<ul class="J_tabs tab_but cu_li">
+			<li class="current">{:L('article_basic')}</li>
+			<li>{:L('article_seo')}</li>
+		</ul>
+		<div class="J_panes">
+			<div class="content_list pad_10">
+				<table width="100%" cellspacing="0" class="table_form">
+					<tr>
+						<th width="120">{:L('article_cateid')} :</th>
+						<td>
+			          	<select name="pid">
+			            	<option value="0">请选择</option>
+			            	{$select_menus}
+			            </select>
+			            </td>
+					</tr>
+		            <tr>
+						<th>{:L('article_title')} :</th>
+						<td>
+							<input type="text" name="title" id="J_title" class="" size="50">
+		                </td>
+					</tr>
+		            <tr>
+						<th>{:L('author')} :</th>
+						<td><input type="text" name="author" id="author" class="" size="20" value="{$author}"></td>
+					</tr>
+		            <tr>
+						<th>详细内容 :</th>
+		                <td>
+
+                            <div class="col-sm-10">
+                                <!-- 加载编辑器的容器 -->
+                                <script id="UEditor" name="info" type="text/plain" style="height:500px;">
+                                    
+                                </script>
+                            </div>
+						</td>
+					</tr>
+					<tr>
+						<th>{:L('publish')} :</th>
+		 				<td>
+		                	<label><input type="radio" name="status" class="radio_style" value="1"> {:L('yes')} </label>&nbsp;&nbsp;
+							<label><input type="radio" name="status" class="radio_style" value="0" checked="checked"> {:L('no')}</label>
+						</td>
+					</tr>
+					<tr>
+						<th>是否推荐到左侧 :</th>
+						<td>
+							<label><input type="radio" name="recommend" class="radio_style" value="1"  > {:L('yes')}</label>&nbsp;&nbsp;
+							<label><input type="radio" name="recommend" class="radio_style" value="0"  checked="checked"> {:L('no')}</label>
+						</td>
+					</tr>					
+				</table>
+			</div>
+			<div class="content_list pad_10 hidden">
+				<table width="100%" cellspacing="0" class="table_form">
+					<tr>
+						<th>{:L('seo_keys')} :</th>
+						<td><input type="text" name="seo_keys" id="seo_keys" class="" size="60"></td>
+					</tr>
+					<tr>
+						<th>{:L('seo_desc')} :</th>
+						<td><textarea name="seo_desc" id="seo_desc" cols="80" rows="8"></textarea></td>
+					</tr>
+				</table>
+			</div>
+        </div>
+		<div class="mt10"><input type="submit" value="{:L('submit')}" id="dosubmit" name="dosubmit" class="smt mr10" style="margin:0 0 10px 100px;"><br /><br /><br /></div>
+	</div>
+</div>
+</form>
+<!--ueditor-->
+<script type="text/javascript" src="/static/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="/static/ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var editor = new UE.ui.Editor();
+        editor.render("UEditor");
+
+		$('#j_artdialog_form').validator(function(form){
+		    $.ajax({
+		        type : 'post',
+		        url  : $(form).attr("action"),
+		        data : $(form).serialize(),
+		        success: function(res) {
+		            if(res.status==1){
+		                cpk_dialog_remove("j_artdialog_form");
+		                cpk_tip(res.msg);
+		                window.location.reload();
+		            }else{
+		                cpk_alert(res.msg)
+		            }
+		        }
+		    });
+		});
+    });
+</script>

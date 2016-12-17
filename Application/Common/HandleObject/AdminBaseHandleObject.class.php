@@ -45,4 +45,26 @@ class AdminBaseHandleObject {
         session('admin', null);
         return array("error"=>0,"info"=>"登出成功");
     }
+
+
+    public function addDocument(){
+        $documentModel       = D('Document');
+        $documentArtcleModel = D('DocumentArticle');
+        if (!$documentModel->field('title')->create($_POST,11)){
+            return array("error"=>1,"info"=>$documentModel->getError());
+        }
+        $res = $documentModel->add();
+        $_POST['id']          = $res;
+        if (!$documentArtcleModel->field('id,content')->create($_POST,11)){
+            return array("error"=>1,"info"=>$documentArtcleModel->getError());
+        }
+        $res_article = $documentArtcleModel->add();
+        if($res && $res_article){
+            return array("error"=>0,"info"=>"添加成功",'id'=>$res);
+        }else{
+            return array("error"=>1,"info"=>"添加失败");
+        }
+    }
+
+
 }

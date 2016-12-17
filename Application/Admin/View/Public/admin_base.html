@@ -82,6 +82,8 @@ $(document).on("click",".J_showdialog",function(){
     var o_this = $(this),
     dtitle     = o_this.attr('data-title'),
     duri       = o_this.attr('data-uri'),
+    dwidth     = o_this.attr('data-width'),
+    dheight    = o_this.attr('data-height'),
     dcallback  = o_this.attr('data-callback');
 
     $.getJSON(duri, function(result){
@@ -90,6 +92,8 @@ $(document).on("click",".J_showdialog",function(){
             	id : "j_artdialog_form",
                 title: dtitle,
                 content: result.data,
+                width  : dwidth,
+                height : dheight,
                 okValue: '确定',
                 ok: function () {
                     $("#j_artdialog_form").submit();

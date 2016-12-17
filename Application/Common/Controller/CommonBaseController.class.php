@@ -45,4 +45,11 @@ class CommonBaseController extends Controller {
 		$show       = $Page->show();// 分页显示输出
 		return $show;
     }
+
+    protected function _pager_show($count, $pagesize){
+        $Page       = new \Think\Page($count,$pagesize);// 实例化分页类 传入总记录数和每页显示的记录数
+        $show       = $Page->show();// 分页显示输出
+        return $show;
+    }
+
 }

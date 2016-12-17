@@ -15,6 +15,16 @@ class FrontController extends CommonBaseController {
         $this->_init_visitor();
         //检测用户信息是否有更新
         $this->checkUserStatus();
+
+        //footAboutListData
+        $footAboutListData = D("Document","Datamanager")->getDocumentData_catid(112);
+        $this->assign("footAboutListData",$footAboutListData);
+
+        //footerListData
+        $footerListData = D("Document","Datamanager")->getDocumentInfoDataOnePage_catid(111);
+        $this->assign("footerListData",$footerListData);
+
+        
     }
 
     private function _init_visitor(){

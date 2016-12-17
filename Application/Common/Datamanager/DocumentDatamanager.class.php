@@ -8,8 +8,8 @@ class DocumentDatamanager {
 	/**
 	 * 获取数据
 	 */
-	public function getDocumentData($p=1,$page_size=20,$map=array()){
-		$data = $this->_takeDocumentData("data",$map,$p,$page_size);
+	public function getDocumentData($p=1,$page_size=20,$map=array(),$order="id desc"){
+		$data = $this->_takeDocumentData("data",$map,$p,$page_size,$order);
 		return $data;
 	}
 	/**
@@ -171,7 +171,7 @@ class DocumentDatamanager {
         return $str;
 	}
 
-	private function _takeDocumentData($type="data",$searchmap=array(),$p=1,$page_size=20){
+	private function _takeDocumentData($type="data",$searchmap=array(),$p=1,$page_size=20,$order="d.level desc ,d.id desc"){
 		$map = array();
 		//$map['o.status'] = array("egt",0);
 		//合并覆盖
@@ -183,12 +183,12 @@ class DocumentDatamanager {
 					->join('left join '.C('DB_PREFIX').'category AS c on d.category_id=c.id')
 					->field('d.*,a.content,c.name AS category_name,c.title AS category_title')
 					->where($newmap)
-					->order('d.level desc ,d.id desc')
+					->order($order)
 					->page($p.','.$page_size)
 					->select();
 
 			foreach ($list as $key => $value) {
-				$list[$key]['href_url']  = get_controller_action_name_by_catid($value['category_id'],"/");
+				$list[$key]['href_url']  = $this->_get_controller_action_name_by_catid($value['category_id'],"/");
 				if($value['cover_id'] > 0){
 					$list[$key]['cover_url'] = M("picture")->where(array("id"=>$value['cover_id']))->getField("path");
 
@@ -202,10 +202,27 @@ class DocumentDatamanager {
 					->join('left join '.C('DB_PREFIX').'document_article AS a on d.id=a.id')
 					->field('d.id')
 					->where($newmap)
-					->order('d.level desc')
-					->page($p.','.$page_size)
 					->count();
 		}
         return $list;
 	}
+
+
+	private function _get_controller_action_name_by_catid($catid,$explodstr="_"){
+	    if(!F("ControllerActionNameByCatid")){
+	        $data = D("Category","Datamanager")->getControllerActionNameByCatid_NoCache();
+	        F("ControllerActionNameByCatid",$data);
+	    }
+	    $data = F("ControllerActionNameByCatid");
+	    if($explodstr != "_"){
+	        foreach ($data as $key => $value) {
+	            $data[$key] = str_replace("_", $explodstr, $data[$key]);
+	        }
+	    }
+	    if($catid>0){
+	        return $data[$catid];
+	    }
+	    return $data;
+	}
+
 }

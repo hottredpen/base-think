@@ -1,0 +1,262 @@
+<extend name="Public/new_common"/>
+
+<block name="body_main">
+
+
+
+    <div class="row">
+        <div class="fullwidthbanner-container">
+            <div class="fullwidthbanner" >
+                <ul>
+                    <volist name="bannerData" id="vo">
+                        <li data-transition="" data-slotamount="15" data-masterspeed="300" data-link="{$vo.fileurl}" data-target="_blank">
+                            <img src="{$vo.fileurl}" alt="{$vo.title}" />
+                        </li>
+                    </volist>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <div style="background-color: #f3f3f3;">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-8 ">
+                    <div class="wow fadeInDown clearfix" style="margin-bottom: 10px;">
+                        <h2><a href="/news/" style="font-size: 24px;border-left: 5px #0E4726 solid;padding-left: 5px;">新闻</a></h2>
+                    </div>
+                    <volist name="newsData" id="vo">
+
+                        <div class="col-sm-4 wow fadeInDown">
+                            <div class="clients-news text-center">
+                                <a href="{:U($vo['href_url'],array('id'=>$vo['id']))}" title="{$vo['title']}"><img src="{$vo.cover_url}" class="img-responsive" alt="{$vo.title}"  ></a>
+                                <span><a href="{:U($vo['href_url'],array('id'=>$vo['id']))}" title="{$vo['title']}" >{$vo.title|cutCn=10}</a></span>
+                            </div>
+                        </div>
+                    </volist>
+                </div>
+
+                <div class="col-md-4">
+
+                    <div class="wow fadeInDown clearfix" style="margin-bottom: 10px;">
+                        <h2><a href="/news/" style="font-size: 24px;border-left: 5px #0E4726 solid;padding-left: 5px;">公告</a></h2>
+                    </div>
+
+                    <div class="testimonial wow fadeInDown">
+                        <volist name="noticesData" id="vo">
+                            <div class="media testimonial-inner cpk_icon">
+                                <a  href="{:U($vo['href_url'],array('id'=>$vo['id']))}" title="{$vo['title']}">{$vo['title']|cutCn=25}</a>
+                            </div>
+                        </volist>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <section style="background-color: #fff;padding-top: 0px;">
+        <div class="container">
+            <div class="wow fadeInDown clearfix" style="margin-bottom: 10px;">
+                <h2><a href="/news/" style="font-size: 24px;border-left: 5px #0E4726 solid;padding-left: 5px;">资讯</a></h2>
+            </div>
+            <div class="row " style=" background: #fff url(../static/img/biankuang.gif); background-clip: border-box; background-origin: padding-box; background-size: auto auto;background-repeat: no-repeat; background-position: right bottom;">
+                <div class="col-md-4 wow fadeInDown">
+
+                    <div class="testimonial wow fadeInDown">
+                        <volist name="zixunData" id="vo">
+                            <div class="media testimonial-inner">
+                                <div><h4><a  href="{:U($vo['href_url'],array('id'=>$vo['id']))}" title="{$vo['title']}">{$vo['title']|cutCn=22}</a></h4></div>
+                                <div class="pull-left">
+                                    <notempty name="vo[cover_url]">
+                                    <a href="{:U($vo['href_url'],array('id'=>$vo['id']))}" title="{$vo['title']}"><img class="img-responsive" src="{$vo.cover_url}" width="100" height="100"></a>
+                                    </notempty>
+                                </div>
+                                <div class="media-body">
+                                    <p>{$vo.description|cutCn=50}</p>
+                                    <span><i class="fa fa-clock-o " style="margin-right: 5px;"></i><span style="margin-right: 5px;" >{$vo.create_time|date="Y-m-d",###}</span><i class="fa fa-user " style="margin-right: 5px;"></i><i>{$vo.view}</i></span>
+                                </div>
+                            </div>
+                        </volist>
+                    </div>
+                </div>
+
+                <div class="col-md-8 wow fadeInDown">
+                    
+                    <div class="clearfix">
+                            <div class="col-md-6"><a href="/about/xiandaishouhui.html" class="boxspan" style="background-color: #8A9045;"><i class="fa fa-bars"></i>关于我们</a></div>
+                                
+
+                            <div class="col-md-3"><a href="/teaching/shizi.html" class="boxspan" style="background-color: #3E769A;"><i class="fa fa-users"></i>师资力量</a></div>
+
+                            <div class="col-md-3"><a href="/works.html" class="boxspan" style="background-color: #7d7b7b;"><i class="fa fa-picture-o"></i>作品赏析</a></div>
+                            
+
+                           
+                            <div class="col-md-6"><a href="/enrollment.html" class="boxspan"  style="background-color: #A88B60;"><i class="fa fa-file-text-o "></i>招生简章</a></div>
+                                
+
+                            <div class="col-md-3"><a href="/enrollment.html?see=1" class="boxspan"  style="background-color: #c16622;"><i class="fa fa-tv "></i>网上报名</a></div>
+
+                            <div class="col-md-3"><a href="/talent.html" class="boxspan"  style="background-color: #5E8B75;"><i class="fa fa-archive "></i>招贤榜</a></div>
+                            
+                           
+                    </div>
+
+                    <div class="line-hott "></div>
+
+
+
+                  <div class="col-xs-12">
+                    <h2>招生帮助</h2> 
+                    <div class="tab-wrap">
+                        <div class="media">
+                            <div class="parrent pull-left">
+                                <ul class="nav nav-tabs nav-stacked">
+                                    <volist name="helpData" id="vo" key="k">
+                                      <li class="<php>if($k==1){ echo 'active';}</php>"><a href="#tab{$k}" data-toggle="tab" class="analistic-02">{$vo.title}</a></li>
+                                    </volist>
+                                </ul>
+                            </div>
+
+                            <div class="parrent media-body">
+                                <div class="tab-content">
+
+                                  <volist name="helpData" id="vo" key="k">
+
+                                    <div class="tab-pane <php>if($k==1){ echo 'active in';}</php>" id="tab{$k}">
+                                        <div class="media">
+                                            <div class="pull-left">
+                                                <notempty name="vo['cover_url']">
+                                                <img class="img-responsive" src="{$vo.cover_url}">
+                                                </notempty>
+                                            </div>
+                                            <div class="media-body">
+                                                <notempty name="vo['listdata_format']">
+                                                <volist name="vo['listdata_format']" id="voo">
+                                                  <p>{$voo}</p>
+                                                </volist>
+                                                <else />
+                                                    {$vo.content}
+                                                </notempty>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                  </volist>
+
+                                </div> <!--/.tab-content-->  
+                            </div> <!--/.media-body--> 
+                        </div> <!--/.media-->     
+                    </div><!--/.tab-wrap-->   
+                </div><!--/.col-sm-6-->
+
+                
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="pricing-page" style="padding-top: 0px;">
+        <div class="container">
+            <div class="get-started center wow fadeInDown" style="margin-top: 0px;margin-bottom: 60px;">
+                <h2>课程设置</h2>
+                <p class="lead">About modern hand painting drawn Curriculum</p>
+                <div class="cpk_request">
+                    <h4><a></a></h4>
+                </div>
+            </div><!--/.get-started-->
+
+            <div class="clearfix"></div>
+
+            <div class="pricing-area text-center">
+                <div class="row">
+
+                    <volist name="classData" id="vo" key="k">
+
+                    <div class="col-xs-6 col-sm-4 plan price-{$k} wow fadeInDown">
+                        <ul>
+                            <li class="heading-{$k}">
+                                <h1>{$vo.title}</h1>
+                            </li>
+                            <li><a href="/class/{$vo.name}.html" target="_blank"><img src="{$vo.icon_url}" class="img-" alt="" width="100%" height="100%"></a></li>
+                            <li class="plan-action">
+                                <a href="/class/{$vo.name}.html" target="_blank" class="btn btn-primary">查看详情</a>
+                            </li>
+                        </ul>
+                    </div>
+                    </volist>
+
+                </div>
+            </div><!--/pricing-area-->
+        </div><!--/container-->
+    </section><!--/pricing-page-->
+
+
+    <section id="recent-works" style="padding-top: 0px;">
+        <div class="container">
+            <div class="center wow fadeInDown">
+                <h2>作品欣赏</h2>
+                <p class="lead">Some modern hand painting works</p>
+            </div>
+
+            <div class="row">
+
+                <volist name="worksData" id="vo" key="k">
+                    <div class="col-xs-6 col-sm-6 col-md-3 mb_22" >
+                        <div class="recent-work-wrap">
+                            <a class="preview" href="{$vo.cover_url}" rel="prettyPhoto"><img class="img-" src="{$vo.cover_url}" alt="{$vo.title}" height="200"></a>
+                            <div class="overlay" style="pointer-events:none;">
+                                <div class="recent-work-inner">
+                                    <h3><a href="#">{$vo.title}</a></h3>
+                                    <p>{$vo.description}</p>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </volist>
+
+
+            </div><!--/.row-->
+        </div><!--/.container-->
+    </section><!--/#recent-works-->
+
+
+
+
+
+    <section id="partner">
+        <div class="container">
+            <div class="center wow fadeInDown" style="padding: 0px;">
+                <h2>友情链接</h2>
+                <p class="lead">friendly link</p>
+            </div>    
+
+            <div class="m-public-friend">
+                <ul>
+                    <volist name="friendLinkData" id="vo">
+                        <li> <a href="{$vo.description}" target="_blank" title="{$vo.title}"><img class="img-responsive wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms" src="{$vo.cover_url}" height="200" ></a></li>
+                    </volist>
+                </ul>
+            </div>        
+
+            <div class="m-public-friend">
+                <ul>
+                    <volist name="friendLinknopicData" id="vo">
+                        <li> <a href="{$vo.description}" target="_blank" title="{$vo.title}" style="color: #fff;">{$vo.title}</a></li>
+                    </volist>
+                </ul>
+            </div>        
+
+
+        </div><!--/.container-->
+    </section><!--/#partner-->
+
+
+
+
+</block>

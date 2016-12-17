@@ -8,7 +8,7 @@ use Home\Util\WebObject;
  * 前台首页控制器
  * 主要获取首页聚合数据
  */
-class IndexController extends ArticleBaseController {
+class IndexController extends FrontController {
 
     public function _initialize(){
     	parent::_initialize();

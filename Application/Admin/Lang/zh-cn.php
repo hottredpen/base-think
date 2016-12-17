@@ -150,6 +150,34 @@ return array(
 		'not_edit_password'                  => '不修改则留空',
 
 
+		'article_basic'       => '基本信息',
+		'article_info'        => '详细内容',
+		'article_seo'         => 'SEO 设置',
+		'article_title'       => '文章标题',
+		'article_title_empty' => '文章标题不能为空',
+		'article_cateid'      => '所属分类',
+		'help_cateid'         => '所属分类',
+		'article_copyfrom'    => '来源',
+		'article_img'         => '图片',
+		'article_url'         => '转向链接',
+		'auto_get'            => '自动获取',
+		'page_manage'         => '单页管理',
+
+		'add_article_cate'            => '添加分类',
+		'add_help_cate'               => '添加分类',
+		'add_article_subcate'         => '添加子分类',
+		'article_cate_name'           => '分类名称',
+		'article_cate_alias'          => '分类别名',
+		'article_cate_parent'         => '上级分类',
+		'help_cate_name'              => '分类名称',
+		'help_cate_alias'             => '分类别名',
+		'help_cate_parent'            => '上级分类',    
+		'no_parent_cate'              => '顶级分类',
+		'article_cate_already_exists' => '分类已经存在',
+		'help_cate_already_exists'    => '分类已经存在',
+		'cannot_move_to_child'        => '不能移动到本分类或者子分类下面',
+
+
 
  //    'PAY_METHOD_RATE_DESC' => '说明：顾客将支付订单总金额乘以此费率作为手续费；',
  //    'author'=>'插件作者',
